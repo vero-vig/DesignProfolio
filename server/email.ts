@@ -39,13 +39,15 @@ ${contactMessage.message}
     // Send email using SendGrid
     await mailService.send({
       to: contactMessage.recipient || 'veronica.vignoni@gmail.com', // Default recipient if not specified
-      from: 'veronica.vignoni@gmail.com', // Using your email as sender (must be verified in SendGrid)
+      from: { email: 'apikey@sendgrid.net', name: 'Vero.PM&Design Portfolio' }, // Use SendGrid default sender with a name
       subject: `Portfolio Contact: ${contactMessage.subject}`,
       text: emailContent,
       html: htmlContent,
     });
     
-    console.log(`Email sent successfully to ${contactMessage.recipient}`);
+    console.log(`Email sent successfully via SendGrid to ${contactMessage.recipient || 'veronica.vignoni@gmail.com'}`);
+    console.log(`From: ${JSON.stringify({ email: 'apikey@sendgrid.net', name: 'Vero.PM&Design Portfolio' })}`);
+    console.log(`Subject: Portfolio Contact: ${contactMessage.subject}`);
     return true;
   } catch (error: any) {
     console.error('SendGrid email error:', error);
