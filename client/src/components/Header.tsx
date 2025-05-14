@@ -32,7 +32,7 @@ export default function Header({ toggleMobileMenu }: HeaderProps) {
     }`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="/" className="text-2xl font-bold text-primary">
-          Jane<span className="text-foreground">.Design</span>
+          Veronica<span className="text-foreground">.Design</span>
         </a>
 
         <nav className="hidden lg:flex items-center space-x-8">
@@ -49,7 +49,7 @@ export default function Header({ toggleMobileMenu }: HeaderProps) {
           )}
           <a 
             href={resume} 
-            download="Jane_Smith_CV.pdf"
+            download="Veronica_Vignoni_CV.pdf"
             className="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-300"
           >
             Download CV

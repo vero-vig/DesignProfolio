@@ -79,7 +79,7 @@ export default function AboutSection() {
               asChild
               className="rounded-full"
             >
-              <a href={resume} download="Jane_Smith_CV.pdf">Download CV</a>
+              <a href={resume} download="Veronica_Vignoni_CV.pdf">Download CV</a>
             </Button>
           </motion.div>
         </div>
