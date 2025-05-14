@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -48,7 +48,7 @@ export default function CaseStudyPage() {
             </div>
           </div>
         </main>
-        <Footer />
+        <FooterSimple />
       </div>
     );
   }
@@ -67,7 +67,7 @@ export default function CaseStudyPage() {
             </Button>
           </div>
         </main>
-        <Footer />
+        <FooterSimple />
       </div>
     );
   }
@@ -220,7 +220,7 @@ export default function CaseStudyPage() {
         </div>
       </main>
       
-      <Footer />
+      <FooterSimple />
     </div>
   );
 }
