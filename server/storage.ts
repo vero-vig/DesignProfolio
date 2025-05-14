@@ -204,7 +204,7 @@ export class DatabaseStorage implements IStorage {
               description: "Reduction in Support Tickets"
             }
           ],
-          keyLearnings: "This project reinforced the importance of balancing simplicity with depth of functionality, especially for complex data. I learned valuable techniques for presenting financial information in accessible ways while maintaining accuracy and detail for power users. The collaborative approach with the client's development team also provided insights into creating designs that were both visually impressive and technically feasible within their constraints."
+          keyLearnings: "This project reinforced the importance of balancing simplicity with depth of functionality, especially for complex data. I learned valuable techniques for presenting financial information in accessible ways while maintaining accuracy and detail for power users.\n\nKey Insights:\n\nUser-Centered Design Process:\n- Started with extensive user research to understand pain points\n- Conducted multiple rounds of usability testing\n- Implemented changes based on real user feedback\n\nData Visualization Principles:\n- Used progressive disclosure for complex information\n- Applied consistent color coding for financial metrics\n- Created custom visualizations for key financial indicators\n\nCollaboration with Development:\n- Daily standups with engineering team improved implementation\n- Technical constraints informed design decisions early\n- Documentation of design system ensured consistency"
         };
         
         await db.insert(caseStudies).values(financialAppCaseStudy);

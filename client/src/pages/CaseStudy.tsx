@@ -206,9 +206,43 @@ export default function CaseStudyPage() {
           
           <div>
             <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
-            <p className="text-gray-600">
-              {caseStudy.keyLearnings}
-            </p>
+            <div className="text-gray-600">
+              {typeof caseStudy.keyLearnings === 'string' && 
+                caseStudy.keyLearnings.split('\n\n').map((paragraph, pIndex) => {
+                  // Check if paragraph starts with a bullet title pattern (text followed by colon)
+                  if (paragraph.match(/^[^:]+:/)) {
+                    const [title, ...content] = paragraph.split(':');
+                    return (
+                      <div key={pIndex} className="mb-4">
+                        <p className="font-bold mb-2">{title}:</p>
+                        <p>{content.join(':')}</p>
+                      </div>
+                    );
+                  } 
+                  // Check if paragraph contains bullet points (lines starting with - or *)
+                  else if (paragraph.includes('\n- ') || paragraph.includes('\n* ')) {
+                    const lines = paragraph.split('\n');
+                    const title = lines[0];
+                    const bulletPoints = lines.slice(1).filter(line => line.trim().startsWith('-') || line.trim().startsWith('*'));
+                    
+                    return (
+                      <div key={pIndex} className="mb-4">
+                        {title && <p className="font-bold mb-2">{title}</p>}
+                        <ul className="list-disc pl-5 space-y-1">
+                          {bulletPoints.map((point, bIndex) => (
+                            <li key={bIndex}>{point.replace(/^[-*]\s/, '')}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  } 
+                  // Regular paragraph
+                  else {
+                    return <p key={pIndex} className="mb-4">{paragraph}</p>;
+                  }
+                })
+              }
+            </div>
           </div>
         </div>
       </main>
