@@ -24,7 +24,7 @@ export default function Footer() {
         <hr className="my-8 border-gray-200" />
 
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} Jane Smith. All rights reserved.</p>
+          <p className="text-gray-500 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} Veronica Vignoni. All rights reserved.</p>
           
           <div className="flex gap-4">
             <a href="#" className="text-gray-500 hover:text-primary transition-colors duration-300">

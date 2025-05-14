@@ -30,7 +30,7 @@ export default function AboutSection() {
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">About Me</h2>
             
             <p className="text-gray-600 mb-4">
-              Hello! I'm Jane Smith, a passionate UX/UI Designer and Product Manager with over 7 years of experience creating user-centered digital products that drive business success.
+              Hello! I'm Veronica Vignoni, a passionate UX/UI Designer and Product Manager with over 7 years of experience creating user-centered digital products that drive business success.
             </p>
             
             <p className="text-gray-600 mb-6">

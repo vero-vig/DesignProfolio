@@ -134,7 +134,7 @@ export default function CaseStudyPage() {
               <div className="mt-6">
                 <a 
                   href={resume} 
-                  download="Jane_Smith_CV.pdf"
+                  download="Veronica_Vignoni_CV.pdf"
                   className="flex items-center justify-center w-full bg-primary text-white px-6 py-3 rounded-full hover:bg-opacity-90 transition-colors duration-300"
                 >
                   Download CV <ExternalLink className="ml-2 h-4 w-4" />
