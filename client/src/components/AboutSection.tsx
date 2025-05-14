@@ -33,25 +33,33 @@ export default function AboutSection() {
               Hello! I'm Veronica Vignoni, a passionate Product Manager and UX/UI Designer with over 7 years of experience creating user-centered digital products that drive business success.
             </p>
             
+            <p className="text-gray-600 mb-4">
+              I specialize in building intuitive, accessible, and visually compelling experiences while leading cross-functional teams through the full product lifecycle. My approach blends strategic thinking, creative problem-solving, and data-driven insights to deliver solutions that meet user needs and align with business goals.
+            </p>
+            
             <p className="text-gray-600 mb-6">
-              I specialize in creating intuitive, accessible, and visually appealing interfaces while leading cross-functional teams to deliver products that users love. My approach combines data-driven insights with creative problem-solving to craft experiences that balance user needs with business goals.
+              With a background in design and front-end development, I ensure clear communication between technical and non-technical stakeholders, accurate estimations, and a seamless product delivery process. I've led teams of up to 10 people, introduced scalable CMS solutions, and successfully managed complex migrations—all while improving workflows and team efficiency.
+            </p>
+
+            <p className="text-gray-600 mb-6">
+              I'm bilingual (English/Spanish), thrive in dynamic environments, and love bringing clarity, structure, and empathy to every project I lead.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div>
-                <h3 className="font-semibold mb-2">Experience</h3>
+                <h3 className="font-semibold mb-2">Expertise</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>Senior Product Designer at TechCorp</span>
+                    <span>Product Manager at CAIS (via GlobalLogic)</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>UX Lead at DesignStudio</span>
+                    <span>Project Manager at GlobalLogic</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>Product Manager at StartupX</span>
+                    <span>UX Lead at Hexacta</span>
                   </li>
                 </ul>
               </div>
@@ -61,15 +69,15 @@ export default function AboutSection() {
                 <ul className="space-y-2 text-gray-600">
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>MSc in Digital Design</span>
+                    <span>Google Cloud Digital Leader Certification</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>BSc in Computer Science</span>
+                    <span>Bachelor's in Graphic Design Communication</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="text-primary mt-1 mr-2 h-4 w-4" />
-                    <span>Product Management Certification</span>
+                    <span>Bilingual: English / Spanish</span>
                   </li>
                 </ul>
               </div>
