@@ -49,7 +49,7 @@ export default function PortfolioSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">My Portfolio</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Showcasing my work in UX/UI design and product management across various industries and platforms.
+            Showcasing my work in product management and UX/UI design across various industries and platforms.
           </p>
         </div>
 
@@ -63,25 +63,18 @@ export default function PortfolioSection() {
             All
           </Button>
           <Button 
-            variant={activeFilter === "ui" ? "default" : "outline"}
-            className="rounded-full"
-            onClick={() => handleFilterClick("ui")}
-          >
-            UI Design
-          </Button>
-          <Button 
-            variant={activeFilter === "ux" ? "default" : "outline"}
-            className="rounded-full"
-            onClick={() => handleFilterClick("ux")}
-          >
-            UX Research
-          </Button>
-          <Button 
             variant={activeFilter === "product" ? "default" : "outline"}
             className="rounded-full"
             onClick={() => handleFilterClick("product")}
           >
             Product Management
+          </Button>
+          <Button 
+            variant={activeFilter === "ui" ? "default" : "outline"}
+            className="rounded-full"
+            onClick={() => handleFilterClick("ui")}
+          >
+            UX/UI Design
           </Button>
         </div>
 
