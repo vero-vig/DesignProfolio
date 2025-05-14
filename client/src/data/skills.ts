@@ -55,7 +55,7 @@ export const designTools = [
   },
   {
     name: "Adobe XD",
-    icon: "fab fa-adobe"
+    icon: "fas fa-pen-ruler"
   },
   {
     name: "Illustrator",

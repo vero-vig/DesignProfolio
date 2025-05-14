@@ -186,8 +186,8 @@ export default function ContactSection() {
               
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
-                    <RectangleEllipsis className="text-primary h-5 w-5" />
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                    <RectangleEllipsis className="text-white h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
@@ -198,8 +198,8 @@ export default function ContactSection() {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
-                    <Phone className="text-primary h-5 w-5" />
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                    <Phone className="text-white h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-medium">Phone</h4>
@@ -208,8 +208,8 @@ export default function ContactSection() {
                 </div>
                 
                 <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-4">
-                    <MapPin className="text-primary h-5 w-5" />
+                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
+                    <MapPin className="text-white h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-medium">Location</h4>
