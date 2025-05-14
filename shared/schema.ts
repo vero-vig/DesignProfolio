@@ -32,10 +32,6 @@ export const caseStudies = pgTable("case_studies", {
   process: json("process").notNull(),
   results: json("results").notNull(),
   keyLearnings: json("key_learnings").notNull(),
-  // Keep old columns for backward compatibility but use keyLearnings going forward
-  keyLearningsText: text("key_learnings_text"),
-  keyLearningsBullets: json("key_learnings_bullets").default('[]').notNull(),
-  keyLearningsNew: json("key_learnings_new").default('[]').notNull(),
 });
 
 // Contact messages schema
