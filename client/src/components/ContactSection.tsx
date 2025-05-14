@@ -43,7 +43,12 @@ export default function ContactSection() {
   
   const contactMutation = useMutation({
     mutationFn: async (data: FormValues) => {
-      return apiRequest("POST", "/api/contact", data);
+      // Add recipient email to the data
+      const dataWithRecipient = {
+        ...data,
+        recipient: "veronica.vignoni@gmail.com"
+      };
+      return apiRequest("POST", "/api/contact", dataWithRecipient);
     },
     onSuccess: () => {
       toast({
@@ -186,8 +191,8 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
-                    <a href="mailto:jane@designportfolio.com" className="text-primary hover:underline">
-                      jane@designportfolio.com
+                    <a href="mailto:veronica.vignoni@gmail.com" className="text-primary hover:underline">
+                      veronica.vignoni@gmail.com
                     </a>
                   </div>
                 </div>
@@ -198,7 +203,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium">Phone</h4>
-                    <p>+1 (555) 123-4567</p>
+                    <p>+1 (929) 427-8805</p>
                   </div>
                 </div>
                 
@@ -208,7 +213,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-medium">Location</h4>
-                    <p>San Francisco, CA</p>
+                    <p>New York, NY</p>
                   </div>
                 </div>
               </div>
@@ -216,17 +221,11 @@ export default function ContactSection() {
               <div className="mt-8">
                 <h4 className="font-medium mb-4">Connect with me</h4>
                 <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
+                  <a href="https://www.linkedin.com/in/veronicavignoni/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
+                  <a href="https://www.instagram.com/verovig2022/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
                     <Instagram className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition-colors duration-300">
-                    <Twitter className="h-5 w-5" />
                   </a>
                 </div>
               </div>

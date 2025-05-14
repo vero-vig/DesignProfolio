@@ -59,14 +59,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/contact", async (req, res) => {
     try {
-      const result = insertContactMessageSchema.safeParse(req.body);
+      // Extract recipient if provided
+      const { recipient, ...contactData } = req.body;
+      
+      const result = insertContactMessageSchema.safeParse(contactData);
       
       if (!result.success) {
         const errorMessage = fromZodError(result.error).message;
         return res.status(400).json({ message: errorMessage });
       }
       
+      // Store the contact message in the database
       const contactMessage = await storage.createContactMessage(result.data);
+      
+      // Here you would typically send an email to the recipient (veronica.vignoni@gmail.com)
+      // This would require an email service integration
+      console.log(`New contact form submission would be sent to: ${recipient || 'veronica.vignoni@gmail.com'}`);
+      console.log(`From: ${result.data.name} (${result.data.email})`);
+      console.log(`Subject: ${result.data.subject}`);
+      console.log(`Message: ${result.data.message}`);
+      
       res.status(201).json({ message: "Message sent successfully" });
     } catch (error) {
       console.error("Error sending message:", error);
