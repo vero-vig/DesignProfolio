@@ -1,0 +1,114 @@
+export const portfolioItems = [
+  {
+    id: 1,
+    title: "Financial App Redesign",
+    description: "UI/UX Design, Mobile App",
+    category: "ui",
+    imageSrc: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["Figma", "Design System", "Prototyping"]
+  },
+  {
+    id: 2,
+    title: "E-commerce Product Launch",
+    description: "Product Management, Strategy",
+    category: "product",
+    imageSrc: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["Roadmapping", "Market Research", "A/B Testing"]
+  },
+  {
+    id: 3,
+    title: "Streaming Service User Research",
+    description: "UX Research, User Testing",
+    category: "ux",
+    imageSrc: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["User Interviews", "Usability Testing", "Heuristic Evaluation"]
+  },
+  {
+    id: 4,
+    title: "Analytics Dashboard Redesign",
+    description: "UI Design, Data Visualization",
+    category: "ui",
+    imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["Adobe XD", "Information Architecture", "Data Viz"]
+  },
+  {
+    id: 5,
+    title: "SaaS Product Strategy",
+    description: "Product Management, Go-to-market",
+    category: "product",
+    imageSrc: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["Product Strategy", "OKRs", "User Stories"]
+  },
+  {
+    id: 6,
+    title: "Health App User Experience",
+    description: "UX Design, Wireframing",
+    category: "ux",
+    imageSrc: "https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+    tags: ["User Flows", "Information Architecture", "Accessibility"]
+  }
+];
+
+export const caseStudies = {
+  1: {
+    client: "FinTech Solutions Inc.",
+    timeline: "3 months",
+    role: "Lead UI/UX Designer",
+    tools: ["Figma", "Design System", "Prototyping"],
+    overview: "The client approached me to redesign their financial management app to improve user engagement and satisfaction. The existing app had poor user retention and satisfaction scores, despite offering valuable financial tools. I was tasked with completely reimagining the user experience while maintaining the core functionality that users valued, with a focus on making financial data more accessible and actionable.",
+    challenges: [
+      {
+        icon: "chart-line",
+        title: "Complex Data Visualization",
+        description: "Financial data needed to be presented in an intuitive way without losing important details."
+      },
+      {
+        icon: "users",
+        title: "Diverse User Base",
+        description: "Users ranged from financial novices to experts, requiring an interface that worked for both."
+      },
+      {
+        icon: "shield-alt",
+        title: "Security Concerns",
+        description: "Balancing ease of use with appropriate security measures for sensitive financial data."
+      }
+    ],
+    process: [
+      {
+        icon: "search",
+        title: "Research & Discovery",
+        description: "Conducted user interviews, competitive analysis, and usability testing on the existing app to identify pain points and opportunities. Key findings showed users struggled with navigation, understanding their financial status at a glance, and found the transaction history difficult to parse."
+      },
+      {
+        icon: "pencil-ruler",
+        title: "UX Design & Wireframing",
+        description: "Created user flows, information architecture, and wireframes focusing on simplifying navigation and making key information accessible. Implemented a new dashboard approach with customizable widgets and a simplified navigation system."
+      },
+      {
+        icon: "paint-brush",
+        title: "UI Design & Prototyping",
+        description: "Developed a clean, professional visual design system with accessible color schemes and typography that improved readability of financial data. Created interactive prototypes for testing key user flows and gathering feedback before implementation."
+      },
+      {
+        icon: "check-circle",
+        title: "Testing & Iteration",
+        description: "Conducted usability testing with diverse user groups to validate design decisions and identify areas for improvement. Iterated based on user feedback, particularly improving transaction filtering and categorization features."
+      }
+    ],
+    results: [
+      {
+        metric: "+42%",
+        description: "Increase in Daily Active Users"
+      },
+      {
+        metric: "+38%",
+        description: "Improvement in User Satisfaction"
+      },
+      {
+        metric: "-24%",
+        description: "Reduction in Support Tickets"
+      }
+    ],
+    keyLearnings: "This project reinforced the importance of balancing simplicity with depth of functionality, especially for complex data. I learned valuable techniques for presenting financial information in accessible ways while maintaining accuracy and detail for power users. The collaborative approach with the client's development team also provided insights into creating designs that were both visually impressive and technically feasible within their constraints."
+  }
+};
