@@ -1,7 +1,7 @@
 export const designSkills = [
   {
     name: "User Research",
-    percentage: 90
+    percentage: 75
   },
   {
     name: "Wireframing & Prototyping",
@@ -9,22 +9,22 @@ export const designSkills = [
   },
   {
     name: "UI Design",
-    percentage: 85
+    percentage: 70
   },
   {
-    name: "Design Systems",
+    name: "Design System",
     percentage: 80
   },
   {
     name: "Interaction Design",
-    percentage: 85
+    percentage: 55
   }
 ];
 
 export const productSkills = [
   {
     name: "Product Strategy",
-    percentage: 85
+    percentage: 75
   },
   {
     name: "Roadmapping",
@@ -32,7 +32,7 @@ export const productSkills = [
   },
   {
     name: "Agile Methodologies",
-    percentage: 75
+    percentage: 95
   },
   {
     name: "Stakeholder Management",
