@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
-import resume from "@/assets/resume.pdf";
+import resume from "@/assets/Veronica_Vignoni_CV.pdf";
 
 export default function AboutSection() {
   return (

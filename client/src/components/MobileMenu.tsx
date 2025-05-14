@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useLocation } from "wouter";
-import resume from "@/assets/resume.pdf";
+import resume from "@/assets/Veronica_Vignoni_CV.pdf";
 
 interface MobileMenuProps {
   isOpen: boolean;

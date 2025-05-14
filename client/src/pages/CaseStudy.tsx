@@ -7,7 +7,7 @@ import MobileMenu from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
-import resume from "@/assets/resume.pdf";
+import resume from "@/assets/Veronica_Vignoni_CV.pdf";
 
 export default function CaseStudyPage() {
   const [, setLocation] = useLocation();
