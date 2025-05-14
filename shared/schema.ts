@@ -41,6 +41,7 @@ export const contactMessages = pgTable("contact_messages", {
   email: text("email").notNull(),
   subject: text("subject").notNull(),
   message: text("message").notNull(),
+  recipient: text("recipient"),
 });
 
 // Insert schemas
@@ -75,6 +76,7 @@ export const insertContactMessageSchema = createInsertSchema(contactMessages).pi
   email: true,
   subject: true,
   message: true,
+  recipient: true,
 });
 
 // Types

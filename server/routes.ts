@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import express from "express";
 import { insertContactMessageSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { sendContactFormEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
@@ -59,8 +60,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/contact", async (req, res) => {
     try {
-      // Extract recipient if provided
-      const { recipient, ...contactData } = req.body;
+      // Prepare contact data with recipient
+      const contactData = {
+        ...req.body,
+        recipient: req.body.recipient || 'veronica.vignoni@gmail.com'
+      };
       
       const result = insertContactMessageSchema.safeParse(contactData);
       
@@ -72,14 +76,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Store the contact message in the database
       const contactMessage = await storage.createContactMessage(result.data);
       
-      // Here you would typically send an email to the recipient (veronica.vignoni@gmail.com)
-      // This would require an email service integration
-      console.log(`New contact form submission would be sent to: ${recipient || 'veronica.vignoni@gmail.com'}`);
-      console.log(`From: ${result.data.name} (${result.data.email})`);
-      console.log(`Subject: ${result.data.subject}`);
-      console.log(`Message: ${result.data.message}`);
+      // Send the email via SendGrid
+      const emailSent = await sendContactFormEmail(contactMessage);
       
-      res.status(201).json({ message: "Message sent successfully" });
+      if (!emailSent) {
+        console.warn('Email delivery failed, but contact was saved in database');
+      }
+      
+      res.status(201).json({ 
+        message: "Message sent successfully", 
+        emailDelivered: emailSent
+      });
     } catch (error) {
       console.error("Error sending message:", error);
       res.status(500).json({ message: "Error sending message" });
