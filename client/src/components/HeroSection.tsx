@@ -1,11 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { 
-  Linkedin, 
-  Dribbble, 
-  Instagram, 
-  Github 
-} from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -45,17 +40,11 @@ export default function HeroSection() {
             </div>
 
             <div className="flex gap-6 mt-12">
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors duration-300">
+              <a href="https://www.linkedin.com/in/veronicavignoni/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors duration-300">
                 <Linkedin size={24} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors duration-300">
-                <Dribbble size={24} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors duration-300">
+              <a href="https://www.instagram.com/verovig2022/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors duration-300">
                 <Instagram size={24} />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary transition-colors duration-300">
-                <Github size={24} />
               </a>
             </div>
           </motion.div>
