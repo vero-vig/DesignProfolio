@@ -87,9 +87,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "Message sent successfully", 
         emailDelivered: emailSent
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending message:", error);
-      res.status(500).json({ message: "Error sending message" });
+      
+      // Send more detailed error message
+      const errorMessage = error.message || "Unknown error occurred";
+      res.status(500).json({ 
+        message: "Error sending message", 
+        error: errorMessage,
+        details: process.env.NODE_ENV === 'development' ? error : undefined
+      });
     }
   });
 

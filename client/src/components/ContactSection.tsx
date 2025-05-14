@@ -57,10 +57,18 @@ export default function ContactSection() {
       });
       form.reset();
     },
-    onError: (error) => {
+    onError: (error: any) => {
+      console.error("Contact form error:", error);
+      
+      // Try to extract the error message from the response if available
+      const errorMessage = error.response?.data?.error || 
+                          error.response?.data?.message || 
+                          error.message || 
+                          "Failed to send message. Please try again.";
+      
       toast({
-        title: "Error",
-        description: error.message || "Failed to send message. Please try again.",
+        title: "Error Sending Message",
+        description: errorMessage,
         variant: "destructive",
       });
     },

@@ -39,7 +39,7 @@ ${contactMessage.message}
     // Send email using SendGrid
     await mailService.send({
       to: contactMessage.recipient || 'veronica.vignoni@gmail.com', // Default recipient if not specified
-      from: 'noreply@vero.pmdesign.com', // Change to your verified sender in SendGrid
+      from: 'veronica.vignoni@gmail.com', // Using your email as sender (must be verified in SendGrid)
       subject: `Portfolio Contact: ${contactMessage.subject}`,
       text: emailContent,
       html: htmlContent,
@@ -47,8 +47,17 @@ ${contactMessage.message}
     
     console.log(`Email sent successfully to ${contactMessage.recipient}`);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error('SendGrid email error:', error);
+    
+    // Log detailed SendGrid error information if available
+    if (error.response) {
+      console.error('SendGrid error details:');
+      console.error('Status code:', error.response.statusCode);
+      console.error('Headers:', error.response.headers);
+      console.error('Response body:', error.response.body);
+    }
+    
     return false;
   }
 }
