@@ -35,7 +35,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         )}
         <a 
           href={resume} 
-          download="Veronica_Vignoni_CV.pdf"
+          download="Vero_CV.pdf"
           className="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-300"
         >
           Download CV

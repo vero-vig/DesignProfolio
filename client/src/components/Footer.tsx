@@ -9,7 +9,7 @@ export default function Footer() {
             <a href="#" className="text-2xl font-bold text-primary">
               Vero<span className="text-foreground">.PM&Design</span>
             </a>
-            <p className="text-gray-600 mt-2">UX/UI Designer & Product Manager</p>
+            <p className="text-gray-600 mt-2">Product Manager & UX/UI Designer</p>
           </div>
 
           <div className="flex flex-wrap gap-6">

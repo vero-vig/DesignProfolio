@@ -19,7 +19,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl lg:text-6xl font-bold mb-4">
-              UX/UI Designer & <span className="text-primary">Product Manager</span>
+              <span className="text-primary">Product Manager</span> & UX/UI Designer
             </h1>
             <p className="text-lg lg:text-xl text-gray-600 mb-8">
               I create thoughtful digital experiences and lead product development that drives business results.
