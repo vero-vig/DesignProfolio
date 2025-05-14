@@ -111,7 +111,7 @@ export default function CaseStudyModal({ projectId, onClose }: CaseStudyModalPro
                   <h4 className="font-medium text-gray-700">Tools</h4>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {caseStudy.tools.map((tool, index) => (
-                      <span key={index} className="text-xs font-medium bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                      <span key={index} className="text-xs font-medium bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
                         {tool}
                       </span>
                     ))}

@@ -137,8 +137,8 @@ export default function PortfolioSection() {
                     <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                     <p className="text-gray-600 mb-4">{project.description}</p>
                     <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, index) => (
-                        <span key={index} className="text-xs font-medium bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center">
+                      {project.tags?.map((tag, index) => (
+                        <span key={index} className="text-xs font-medium bg-purple-100 text-purple-800 px-3 py-1 rounded-full flex items-center">
                           <Tag size={10} className="mr-1" />
                           {tag}
                         </span>
