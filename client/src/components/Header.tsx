@@ -32,7 +32,7 @@ export default function Header({ toggleMobileMenu }: HeaderProps) {
     }`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <a href="/" className="text-2xl font-bold text-primary">
-          Veronica<span className="text-foreground">.Design</span>
+          Vero<span className="text-foreground">.PM&Design</span>
         </a>
 
         <nav className="hidden lg:flex items-center space-x-8">
