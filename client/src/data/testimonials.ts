@@ -1,17 +1,17 @@
 export const testimonials = [
   {
-    quote: "Veronica's design approach transformed our product's user experience. Her ability to combine aesthetic appeal with functional design resulted in a 40% increase in user engagement.",
-    name: "Michael Chen",
-    title: "CTO, TechStartup Inc."
+    quote: "Veronica's positive energy and drive for continuous improvement transformed the way our team operated. Though she started as a designer, her impact went far beyond—enhancing our delivery process and fostering a culture of collaboration, growth, and excellence across design, product, and engineering.",
+    name: "Michael Sueoka",
+    title: "Product Leader & Techstars Mentor"
   },
   {
-    quote: "Working with Veronica on our product strategy was a game-changer. Her methodical approach to product management and user-centered design principles helped us prioritize the right features.",
-    name: "Sarah Johnson",
-    title: "Product Owner, FinTech Solutions"
+    quote: "Veronica joined us at a critical time—launching a completely new product with fresh UX and technology. She led design, collaborated with clients, iterated quickly on user feedback, and supported developers through execution. Her work set a new standard for quality and user satisfaction across our applications.",
+    name: "Vincent Aubrun",
+    title: "CTO, Lumesis"
   },
   {
-    quote: "Veronica brings a unique combination of design thinking and product strategy that's rare to find. Her collaborative approach helped align our team around a clear user-focused vision.",
-    name: "David Williams",
-    title: "CEO, Digital Health Co."
+    quote: "Veronica brings a rare mix of technical fluency, adaptability, and emotional intelligence. As our Product Manager, she guided the team through fast-paced changes with clarity and empathy. She strengthened cross-functional communication, led with integrity, and elevated our team dynamic. An outstanding leader and teammate.",
+    name: "Szymon Wojnar",
+    title: "Software Engineer"
   }
 ];
