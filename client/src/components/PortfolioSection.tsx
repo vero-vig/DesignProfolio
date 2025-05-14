@@ -144,11 +144,13 @@ export default function PortfolioSection() {
           </motion.div>
         )}
 
+{/* "View All Projects" button hidden as requested
         <div className="text-center mt-12">
           <a href="#" className="inline-flex items-center text-primary hover:underline">
             View All Projects <i className="fas fa-arrow-right ml-2"></i>
           </a>
         </div>
+*/}
       </div>
 
       {selectedProject && (
