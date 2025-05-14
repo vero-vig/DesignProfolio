@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Linkedin, Instagram } from "lucide-react";
+import { Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 // Extend the schema with validation
@@ -202,16 +202,6 @@ export default function ContactSection() {
                     <a href="mailto:veronica.vignoni@gmail.com" className="text-primary hover:underline">
                       veronica.vignoni@gmail.com
                     </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
-                    <Phone className="text-white h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Phone</h4>
-                    <p>+1 (929) 427-8805</p>
                   </div>
                 </div>
                 
