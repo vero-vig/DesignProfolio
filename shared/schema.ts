@@ -31,7 +31,8 @@ export const caseStudies = pgTable("case_studies", {
   challenges: json("challenges").notNull(),
   process: json("process").notNull(),
   results: json("results").notNull(),
-  keyLearnings: json("key_learnings").notNull(),
+  keyLearningsText: text("key_learnings_text"),
+  keyLearningsBullets: json("key_learnings_bullets").default('[]').notNull(),
 });
 
 // Contact messages schema
