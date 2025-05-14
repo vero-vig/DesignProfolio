@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { RectangleEllipsis, Phone, MapPin, Linkedin, Instagram, Twitter, Github } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 
 // Extend the schema with validation
@@ -187,7 +187,7 @@ export default function ContactSection() {
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-4">
-                    <RectangleEllipsis className="text-white h-5 w-5" />
+                    <Mail className="text-white h-5 w-5" />
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
