@@ -207,19 +207,11 @@ export default function CaseStudyPage() {
           <div>
             <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
             <div className="text-gray-600">
-              {caseStudy.keyLearningsText && (
-                <p className="mb-6">{caseStudy.keyLearningsText}</p>
-              )}
-              
-              {Array.isArray(caseStudy.keyLearningsBullets) && 
-                caseStudy.keyLearningsBullets.map((section: {title: string, points: string[]}, index: number) => (
+              {Array.isArray(caseStudy.keyLearnings) && 
+                caseStudy.keyLearnings.map((learning: {title: string, description: string}, index: number) => (
                   <div key={index} className="mb-6">
-                    <h4 className="font-bold text-lg mb-2">{section.title}</h4>
-                    <ul className="list-disc pl-5 space-y-1">
-                      {section.points.map((point: string, pointIndex: number) => (
-                        <li key={pointIndex}>{point}</li>
-                      ))}
-                    </ul>
+                    <h4 className="font-bold text-lg mb-2">{learning.title}</h4>
+                    <p>{learning.description}</p>
                   </div>
                 ))
               }

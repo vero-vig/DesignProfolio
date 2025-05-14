@@ -204,31 +204,22 @@ export class DatabaseStorage implements IStorage {
               description: "Reduction in Support Tickets"
             }
           ],
-          keyLearningsText: "This project reinforced the importance of balancing simplicity with depth of functionality, especially for complex data. I learned valuable techniques for presenting financial information in accessible ways while maintaining accuracy and detail for power users.",
-          keyLearningsBullets: [
+          keyLearnings: [
+            {
+              title: "General Insights",
+              description: "This project reinforced the importance of balancing simplicity with depth of functionality, especially for complex data. I learned valuable techniques for presenting financial information in accessible ways while maintaining accuracy and detail for power users."
+            },
             {
               title: "User-Centered Design Process",
-              points: [
-                "Started with extensive user research to understand pain points",
-                "Conducted multiple rounds of usability testing",
-                "Implemented changes based on real user feedback"
-              ]
+              description: "Started with extensive user research to understand pain points. Conducted multiple rounds of usability testing. Implemented changes based on real user feedback."
             },
             {
               title: "Data Visualization Principles",
-              points: [
-                "Used progressive disclosure for complex information",
-                "Applied consistent color coding for financial metrics",
-                "Created custom visualizations for key financial indicators"
-              ]
+              description: "Used progressive disclosure for complex information. Applied consistent color coding for financial metrics. Created custom visualizations for key financial indicators."
             },
             {
               title: "Collaboration with Development",
-              points: [
-                "Daily standups with engineering team improved implementation",
-                "Technical constraints informed design decisions early",
-                "Documentation of design system ensured consistency"
-              ]
+              description: "Daily standups with engineering team improved implementation. Technical constraints informed design decisions early. Documentation of design system ensured consistency."
             }
           ]
         };
