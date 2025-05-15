@@ -5,7 +5,12 @@ import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, Clock, Users, Lock, ShieldAlert, Zap, Target } from "lucide-react";
+import { 
+  ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, 
+  Clock, Users, Lock, ShieldAlert, Zap, Target, Code, Database, UserCheck, 
+  Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
+  Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket 
+} from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import resume from "@/assets/Veronica_Vignoni_CV.pdf";
 
@@ -155,26 +160,37 @@ export default function CaseStudyPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {(caseStudy.challenges as any[]).map((challenge, index) => {
                 // Select the appropriate icon based on the challenge title or content
-                const getChallengeIcon = (title: string) => {
+                const getChallengeIcon = (title: string, description: string = '') => {
                   const titleLower = title.toLowerCase();
-                  if (titleLower.includes('time') || titleLower.includes('deadline')) {
+                  const descLower = description.toLowerCase();
+                  const combinedText = titleLower + ' ' + descLower;
+                  
+                  if (titleLower.includes('time') || titleLower.includes('deadline') || combinedText.includes('schedule')) {
                     return <Clock className="h-6 w-6" />;
-                  } else if (titleLower.includes('user') || titleLower.includes('customer')) {
+                  } else if (titleLower.includes('user') || titleLower.includes('customer') || combinedText.includes('stakeholder')) {
                     return <Users className="h-6 w-6" />;
-                  } else if (titleLower.includes('security') || titleLower.includes('privacy')) {
+                  } else if (titleLower.includes('security') || titleLower.includes('privacy') || combinedText.includes('protect')) {
                     return <Lock className="h-6 w-6" />;
-                  } else if (titleLower.includes('risk') || titleLower.includes('compliance')) {
+                  } else if (titleLower.includes('risk') || titleLower.includes('compliance') || combinedText.includes('regulatory')) {
                     return <ShieldAlert className="h-6 w-6" />;
-                  } else if (titleLower.includes('performance') || titleLower.includes('speed')) {
+                  } else if (titleLower.includes('performance') || titleLower.includes('speed') || combinedText.includes('fast')) {
                     return <Zap className="h-6 w-6" />;
-                  } else if (titleLower.includes('goal') || titleLower.includes('objective')) {
+                  } else if (titleLower.includes('goal') || titleLower.includes('objective') || combinedText.includes('target')) {
                     return <Target className="h-6 w-6" />;
+                  } else if (titleLower.includes('tech') || titleLower.includes('technology') || combinedText.includes('code')) {
+                    return <Code className="h-6 w-6" />;
+                  } else if (titleLower.includes('data') || titleLower.includes('information') || combinedText.includes('database')) {
+                    return <Database className="h-6 w-6" />;
+                  } else if (titleLower.includes('budget') || titleLower.includes('cost') || combinedText.includes('expense')) {
+                    return <LineChart className="h-6 w-6" />;
+                  } else if (titleLower.includes('complex') || titleLower.includes('integration') || combinedText.includes('system')) {
+                    return <Puzzle className="h-6 w-6" />;
                   } else {
                     return <ShieldAlert className="h-6 w-6" />;
                   }
                 };
 
-                const icon = getChallengeIcon(challenge.title);
+                const icon = getChallengeIcon(challenge.title, challenge.description);
                 
                 return (
                   <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
@@ -197,26 +213,63 @@ export default function CaseStudyPage() {
               
               {(caseStudy.process as any[]).map((step, index) => {
                 // Select the appropriate icon based on the step title or content
-                const getStepIcon = (title: string) => {
+                const getStepIcon = (title: string, description: string = '') => {
                   const titleLower = title.toLowerCase();
-                  if (titleLower.includes('research') || titleLower.includes('discover')) {
+                  const descLower = description.toLowerCase();
+                  const combinedText = titleLower + ' ' + descLower;
+
+                  // Very specific matches first
+                  if (titleLower.includes('tech stack') || titleLower.includes('integration') || combinedText.includes('code')) {
+                    return <Code className="h-5 w-5" />;
+                  } else if (titleLower.includes('user testing') || titleLower.includes('usability')) {
+                    return <UserCheck className="h-5 w-5" />;
+                  } else if (titleLower.includes('data') || titleLower.includes('database')) {
+                    return <Database className="h-5 w-5" />;
+                  } else if (titleLower.includes('workshop') || titleLower.includes('brainstorm')) {
+                    return <MessageSquare className="h-5 w-5" />;
+                  } else if (titleLower.includes('mobile') || titleLower.includes('responsive')) {
+                    return <Smartphone className="h-5 w-5" />;
+                  } else if (titleLower.includes('wireframe') || titleLower.includes('layout')) {
+                    return <Layout className="h-5 w-5" />;
+                  } else if (titleLower.includes('strategy') || titleLower.includes('planning')) {
+                    return <ClipboardList className="h-5 w-5" />;
+                  } else if (titleLower.includes('workflow') || titleLower.includes('process')) {
+                    return <Workflow className="h-5 w-5" />;
+                  } else if (titleLower.includes('testing') || titleLower.includes('qa')) {
+                    return <TestTube className="h-5 w-5" />;
+                  } else if (titleLower.includes('requirement') || titleLower.includes('specification')) {
+                    return <FileCheck className="h-5 w-5" />;
+                  } else if (titleLower.includes('analysis') || titleLower.includes('metrics')) {
+                    return <LineChart className="h-5 w-5" />;
+                  } else if (titleLower.includes('present') || titleLower.includes('pitch')) {
+                    return <Presentation className="h-5 w-5" />;
+                  } else if (titleLower.includes('performance') || titleLower.includes('speed')) {
+                    return <Gauge className="h-5 w-5" />;
+                  } else if (titleLower.includes('implementation') || titleLower.includes('develop')) {
+                    return <Puzzle className="h-5 w-5" />;
+                  } else if (titleLower.includes('deploy') || titleLower.includes('launch')) {
+                    return <Rocket className="h-5 w-5" />;
+                  }
+                  
+                  // More general matches
+                  else if (titleLower.includes('research') || titleLower.includes('discover')) {
                     return <Search className="h-5 w-5" />;
-                  } else if (titleLower.includes('analysis') || titleLower.includes('define')) {
-                    return <FileText className="h-5 w-5" />;
                   } else if (titleLower.includes('ideation') || titleLower.includes('idea')) {
                     return <Lightbulb className="h-5 w-5" />;
                   } else if (titleLower.includes('design') || titleLower.includes('prototype')) {
                     return <PenTool className="h-5 w-5" />;
-                  } else if (titleLower.includes('implementation') || titleLower.includes('develop')) {
-                    return <Layers className="h-5 w-5" />;
-                  } else if (titleLower.includes('testing') || titleLower.includes('evaluation')) {
+                  } else if (titleLower.includes('configure') || titleLower.includes('setting')) {
+                    return <Settings className="h-5 w-5" />;
+                  } else if (titleLower.includes('concept') || titleLower.includes('thinking')) {
+                    return <Brain className="h-5 w-5" />;
+                  } else if (titleLower.includes('review') || titleLower.includes('evaluation')) {
                     return <BarChart className="h-5 w-5" />;
                   } else {
-                    return <FileText className="h-5 w-5" />;
+                    return <Laptop className="h-5 w-5" />;
                   }
                 };
 
-                const icon = getStepIcon(step.title);
+                const icon = getStepIcon(step.title, step.description);
                 
                 return (
                   <div key={index} className="relative md:pl-16 pb-8">
