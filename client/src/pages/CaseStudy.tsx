@@ -9,7 +9,8 @@ import {
   ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, 
   Clock, Users, Lock, ShieldAlert, Zap, Target, Code, Database, UserCheck, 
   Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
-  Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket 
+  Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
+  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import resume from "@/assets/Veronica_Vignoni_CV.pdf";
@@ -212,13 +213,27 @@ export default function CaseStudyPage() {
               <div className="absolute left-6 h-full w-0.5 bg-gray-200 hidden md:block"></div>
               
               {(caseStudy.process as any[]).map((step, index) => {
-                // Select the appropriate icon based on the step title or content
+                // Select the appropriate icon based on the specific step title
                 const getStepIcon = (title: string, description: string = '') => {
+                  // Client's specific icon requests
+                  if (title.includes('Reusable components architecture')) {
+                    return <Network className="h-5 w-5" />;
+                  } else if (title.includes('Backlog & Documentation')) {
+                    return <FolderOpen className="h-5 w-5" />;
+                  } else if (title.includes('Demo & Stakeholders')) {
+                    return <ScreenShare className="h-5 w-5" />;
+                  } else if (title.includes('Team Growth & Mentorship')) {
+                    return <UsersRound className="h-5 w-5" />;
+                  } else if (title.includes('Stakeholder alignment') || title.includes('MVP Scoping')) {
+                    return <Monitor className="h-5 w-5" />;
+                  }
+                  
+                  // Generic matching for other steps
                   const titleLower = title.toLowerCase();
                   const descLower = description.toLowerCase();
                   const combinedText = titleLower + ' ' + descLower;
 
-                  // Very specific matches first
+                  // Very specific matches
                   if (titleLower.includes('tech stack') || titleLower.includes('integration') || combinedText.includes('code')) {
                     return <Code className="h-5 w-5" />;
                   } else if (titleLower.includes('user testing') || titleLower.includes('usability')) {
