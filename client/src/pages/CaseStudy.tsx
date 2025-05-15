@@ -10,7 +10,7 @@ import {
   Clock, Users, Lock, ShieldAlert, Zap, Target, Code, Database, UserCheck, 
   Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
   Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
-  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor
+  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import resume from "@/assets/Veronica_Vignoni_CV.pdf";
@@ -162,6 +162,11 @@ export default function CaseStudyPage() {
               {(caseStudy.challenges as any[]).map((challenge, index) => {
                 // Select the appropriate icon based on the challenge title or content
                 const getChallengeIcon = (title: string, description: string = '') => {
+                  // Client's specific icon requests
+                  if (title.includes('Balance reuse with innovation')) {
+                    return <Scale className="h-6 w-6" />;
+                  }
+                  
                   const titleLower = title.toLowerCase();
                   const descLower = description.toLowerCase();
                   const combinedText = titleLower + ' ' + descLower;
@@ -186,6 +191,8 @@ export default function CaseStudyPage() {
                     return <LineChart className="h-6 w-6" />;
                   } else if (titleLower.includes('complex') || titleLower.includes('integration') || combinedText.includes('system')) {
                     return <Puzzle className="h-6 w-6" />;
+                  } else if (titleLower.includes('balance') || combinedText.includes('balance')) {
+                    return <Scale className="h-6 w-6" />;
                   } else {
                     return <ShieldAlert className="h-6 w-6" />;
                   }
