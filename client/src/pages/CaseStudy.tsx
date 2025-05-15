@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, Clock, Users, Lock, ShieldAlert, Zap, Target } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import resume from "@/assets/Veronica_Vignoni_CV.pdf";
 
@@ -153,15 +153,39 @@ export default function CaseStudyPage() {
           <div className="mb-10">
             <h3 className="text-2xl font-semibold mb-4">The Challenge</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {(caseStudy.challenges as any[]).map((challenge, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-primary text-2xl mb-3">
-                    <i className={`fas fa-${challenge.icon}`}></i>
+              {(caseStudy.challenges as any[]).map((challenge, index) => {
+                // Select the appropriate icon based on the challenge title or content
+                const getChallengeIcon = (title: string) => {
+                  const titleLower = title.toLowerCase();
+                  if (titleLower.includes('time') || titleLower.includes('deadline')) {
+                    return <Clock className="h-6 w-6" />;
+                  } else if (titleLower.includes('user') || titleLower.includes('customer')) {
+                    return <Users className="h-6 w-6" />;
+                  } else if (titleLower.includes('security') || titleLower.includes('privacy')) {
+                    return <Lock className="h-6 w-6" />;
+                  } else if (titleLower.includes('risk') || titleLower.includes('compliance')) {
+                    return <ShieldAlert className="h-6 w-6" />;
+                  } else if (titleLower.includes('performance') || titleLower.includes('speed')) {
+                    return <Zap className="h-6 w-6" />;
+                  } else if (titleLower.includes('goal') || titleLower.includes('objective')) {
+                    return <Target className="h-6 w-6" />;
+                  } else {
+                    return <ShieldAlert className="h-6 w-6" />;
+                  }
+                };
+
+                const icon = getChallengeIcon(challenge.title);
+                
+                return (
+                  <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="text-primary mb-3">
+                      {icon}
+                    </div>
+                    <h4 className="font-semibold mb-2">{challenge.title}</h4>
+                    <p className="text-gray-600 text-sm">{challenge.description}</p>
                   </div>
-                  <h4 className="font-semibold mb-2">{challenge.title}</h4>
-                  <p className="text-gray-600 text-sm">{challenge.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           
@@ -171,21 +195,45 @@ export default function CaseStudyPage() {
             <div className="relative">
               <div className="absolute left-6 h-full w-0.5 bg-gray-200 hidden md:block"></div>
               
-              {(caseStudy.process as any[]).map((step, index) => (
-                <div key={index} className="relative md:pl-16 pb-8">
-                  <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-primary text-white items-center justify-center">
-                    <i className={`fas fa-${step.icon}`}></i>
-                  </div>
-                  <div className="flex md:hidden items-center mb-2">
-                    <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-3">
-                      <i className={`fas fa-${step.icon}`}></i>
+              {(caseStudy.process as any[]).map((step, index) => {
+                // Select the appropriate icon based on the step title or content
+                const getStepIcon = (title: string) => {
+                  const titleLower = title.toLowerCase();
+                  if (titleLower.includes('research') || titleLower.includes('discover')) {
+                    return <Search className="h-5 w-5" />;
+                  } else if (titleLower.includes('analysis') || titleLower.includes('define')) {
+                    return <FileText className="h-5 w-5" />;
+                  } else if (titleLower.includes('ideation') || titleLower.includes('idea')) {
+                    return <Lightbulb className="h-5 w-5" />;
+                  } else if (titleLower.includes('design') || titleLower.includes('prototype')) {
+                    return <PenTool className="h-5 w-5" />;
+                  } else if (titleLower.includes('implementation') || titleLower.includes('develop')) {
+                    return <Layers className="h-5 w-5" />;
+                  } else if (titleLower.includes('testing') || titleLower.includes('evaluation')) {
+                    return <BarChart className="h-5 w-5" />;
+                  } else {
+                    return <FileText className="h-5 w-5" />;
+                  }
+                };
+
+                const icon = getStepIcon(step.title);
+                
+                return (
+                  <div key={index} className="relative md:pl-16 pb-8">
+                    <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-primary text-white items-center justify-center">
+                      {icon}
                     </div>
-                    <h4 className="text-xl font-semibold">{step.title}</h4>
+                    <div className="flex md:hidden items-center mb-2">
+                      <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-3">
+                        {icon}
+                      </div>
+                      <h4 className="text-xl font-semibold">{step.title}</h4>
+                    </div>
+                    <h4 className="text-xl font-semibold mb-2 hidden md:block">{step.title}</h4>
+                    <p className="text-gray-600">{step.description}</p>
                   </div>
-                  <h4 className="text-xl font-semibold mb-2 hidden md:block">{step.title}</h4>
-                  <p className="text-gray-600">{step.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           
