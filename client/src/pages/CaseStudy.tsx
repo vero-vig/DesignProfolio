@@ -224,6 +224,8 @@ export default function CaseStudyPage() {
                     return <ScreenShare className="h-5 w-5" />;
                   } else if (title.includes('Team Growth & Mentorship')) {
                     return <UsersRound className="h-5 w-5" />;
+                  } else if (title.includes('Permission Logic Rollout')) {
+                    return <FolderOpen className="h-5 w-5" />;
                   } else if (title.includes('Stakeholder alignment') || title.includes('MVP Scoping')) {
                     return <Monitor className="h-5 w-5" />;
                   }
