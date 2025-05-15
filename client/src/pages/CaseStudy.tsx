@@ -10,7 +10,8 @@ import {
   Clock, Users, Lock, ShieldAlert, Zap, Target, Code, Database, UserCheck, 
   Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
   Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
-  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale
+  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale,
+  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import resume from "@/assets/Veronica_Vignoni_CV.pdf";
@@ -162,9 +163,13 @@ export default function CaseStudyPage() {
               {(caseStudy.challenges as any[]).map((challenge, index) => {
                 // Select the appropriate icon based on the challenge title or content
                 const getChallengeIcon = (title: string, description: string = '') => {
-                  // Client's specific icon requests
+                  // Client's specific icon requests for "The Challenge" section
                   if (title.includes('Balance reuse with innovation')) {
                     return <Scale className="h-6 w-6" />;
+                  } else if (title.includes('User Growth without UX Scaling')) {
+                    return <Pencil className="h-6 w-6" />;
+                  } else if (title.includes('Lack of Ownership & Communication')) {
+                    return <MessagesSquare className="h-6 w-6" />;
                   }
                   
                   const titleLower = title.toLowerCase();
@@ -222,7 +227,7 @@ export default function CaseStudyPage() {
               {(caseStudy.process as any[]).map((step, index) => {
                 // Select the appropriate icon based on the specific step title
                 const getStepIcon = (title: string, description: string = '') => {
-                  // Client's specific icon requests
+                  // Client's specific icon requests for "My Process" section
                   if (title.includes('Reusable components architecture')) {
                     return <Network className="h-5 w-5" />;
                   } else if (title.includes('Backlog & Documentation')) {
@@ -235,6 +240,18 @@ export default function CaseStudyPage() {
                     return <FolderOpen className="h-5 w-5" />;
                   } else if (title.includes('Stakeholder alignment') || title.includes('MVP Scoping')) {
                     return <Monitor className="h-5 w-5" />;
+                  } else if (title.includes('Reestablished Ownership')) {
+                    return <User className="h-5 w-5" />;
+                  } else if (title.includes('Organized & Prioritized')) {
+                    return <ListChecks className="h-5 w-5" />;
+                  } else if (title.includes('Built a Lean Core Team')) {
+                    return <Laptop className="h-5 w-5" />;
+                  } else if (title.includes('User-Centered Enhancements')) {
+                    return <User className="h-5 w-5" />;
+                  } else if (title.includes('Improved Stakeholder Communication')) {
+                    return <MessagesSquare className="h-5 w-5" />;
+                  } else if (title.includes('Long-Term Planning')) {
+                    return <CalendarDays className="h-5 w-5" />;
                   }
                   
                   // Generic matching for other steps
