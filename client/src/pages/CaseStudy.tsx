@@ -80,8 +80,58 @@ export default function CaseStudyPage() {
     );
   }
   
+  // Generate dynamic meta descriptions based on case study content
+  const getMetaDescription = () => {
+    if (!project || !caseStudy) return "";
+    return `Case study: ${project.title} for ${caseStudy.client}. ${caseStudy.overview.substring(0, 150)}...`;
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>{project?.title} Case Study | Veronica Vignoni | Product Manager & Designer</title>
+        <meta name="description" content={getMetaDescription()} />
+        <meta name="keywords" content={`${project?.title}, Case Study, ${caseStudy?.client}, ${project?.tags?.join(", ")}, Veronica Vignoni, Product Management, UX/UI Design`} />
+        <link rel="canonical" href={`https://vero.pmdesign.com/case-study/${projectId}`} />
+        
+        {/* Open Graph tags for social sharing */}
+        <meta property="og:title" content={`${project?.title} Case Study | Veronica Vignoni`} />
+        <meta property="og:description" content={getMetaDescription()} />
+        <meta property="og:image" content={project?.imageSrc} />
+        <meta property="og:url" content={`https://vero.pmdesign.com/case-study/${projectId}`} />
+        <meta property="og:type" content="article" />
+        
+        {/* Structured data for case study */}
+        <script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "${project?.title} Case Study",
+            "author": {
+              "@type": "Person",
+              "name": "Veronica Vignoni"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Vero.PM&Design",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://vero.pmdesign.com/logo.png"
+              }
+            },
+            "description": "${getMetaDescription().replace(/"/g, '\\"')}",
+            "image": "${project?.imageSrc}",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://vero.pmdesign.com/case-study/${projectId}"
+            },
+            "keywords": "${project?.tags?.join(", ")}",
+            "articleSection": "Case Study"
+          }
+        `}
+        </script>
+      </Helmet>
       <Header toggleMobileMenu={toggleMobileMenu} />
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
       

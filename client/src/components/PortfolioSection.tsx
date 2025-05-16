@@ -113,8 +113,9 @@ export default function PortfolioSection() {
                   <div className="relative">
                     <img 
                       src={project.imageSrc} 
-                      alt={project.title} 
+                      alt={`${project.title} - ${project.description} by Veronica Vignoni`} 
                       className="w-full h-64 object-cover" 
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-primary bg-opacity-90 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                       <Button 
