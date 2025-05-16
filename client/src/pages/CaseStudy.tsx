@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRoute, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
