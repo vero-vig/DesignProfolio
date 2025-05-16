@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
 import CaseStudyModal from "./CaseStudyModal";
+import { OptimizedImage } from "./OptimizedImage";
 import { Project } from "@shared/schema";
 import { Tag } from "lucide-react";
 
@@ -111,10 +112,10 @@ export default function PortfolioSection() {
                   layout
                 >
                   <div className="relative">
-                    <img 
+                    <OptimizedImage 
                       src={project.imageSrc} 
                       alt={`${project.title} - ${project.description} by Veronica Vignoni`} 
-                      className="w-full h-64 object-cover" 
+                      className="w-full h-64" 
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-primary bg-opacity-90 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">

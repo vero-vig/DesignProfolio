@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, 
@@ -149,10 +150,10 @@ export default function CaseStudyPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             <div className="lg:col-span-2">
-              <img 
+              <OptimizedImage 
                 src={project.imageSrc} 
-                alt={project.title} 
-                className="rounded-xl shadow-md w-full h-auto object-cover"
+                alt={`${project.title} - Case study for ${caseStudy.client} by Veronica Vignoni`}
+                className="rounded-xl shadow-md w-full h-auto"
               />
             </div>
             
