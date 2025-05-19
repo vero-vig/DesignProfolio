@@ -39,15 +39,24 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Test database connection first
+  // Test database connection with retries
   try {
-    const { testConnection } = await import('./db');
     const isConnected = await testConnection();
     
     if (!isConnected) {
-      log("Warning: Database connection test failed. Will retry during operation.");
+      log("Database connection unavailable - site will use fallback data.");
     } else {
-      log("Database connection test successful.");
+      log("Database connection established successfully.");
+      
+      // Initialize schema if connected
+      try {
+        const { initializeSchema } = await import('./db');
+        await initializeSchema();
+        log("Database schema initialized.");
+      } catch (schemaError) {
+        console.error("Schema initialization error:", schemaError);
+        log("Failed to initialize database schema, but will continue.");
+      }
     }
   } catch (error) {
     console.error("Database connection test error:", error);
@@ -57,11 +66,11 @@ app.use((req, res, next) => {
   // Initialize database with sample data if it's empty
   if (storage instanceof DatabaseStorage) {
     try {
-      await (storage as any).initializeDataIfEmpty();
+      await storage.initializeDataIfEmpty();
       log("Database initialized with sample data if needed.");
     } catch (error) {
       console.error("Error initializing database:", error);
-      log("Failed to initialize database with sample data. The application will continue, but some features may not work properly.");
+      log("Failed to initialize database with sample data. The application will continue with fallback data.");
     }
   }
   
