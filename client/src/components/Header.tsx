@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import resume from "@/assets/Veronica_Vignoni_CV.pdf";
+import ResumeDownloadMenu from "./ResumeDownloadMenu";
 
 interface HeaderProps {
   toggleMobileMenu: () => void;
@@ -47,13 +47,10 @@ export default function Header({ toggleMobileMenu }: HeaderProps) {
           ) : (
             <a href="/" className="hover:text-primary transition-colors duration-300">Home</a>
           )}
-          <a 
-            href={resume} 
-            download="Vero_CV.pdf"
-            className="bg-primary text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition-colors duration-300"
-          >
-            Download CV
-          </a>
+          <ResumeDownloadMenu 
+            className="bg-primary text-white px-6 py-2 hover:bg-opacity-90 transition-colors duration-300" 
+            buttonVariant="ghost"
+          />
         </nav>
 
         <Button 
