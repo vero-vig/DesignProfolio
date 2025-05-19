@@ -13,7 +13,7 @@ import {
   Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
   Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
   FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale,
-  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks
+  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks, Terminal
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import ResumeDownloadMenu from "@/components/ResumeDownloadMenu";
@@ -278,7 +278,20 @@ export default function CaseStudyPage() {
                 // Select the appropriate icon based on the specific step title
                 const getStepIcon = (title: string, description: string = '') => {
                   // Client's specific icon requests for "My Process" section
-                  if (title.includes('Reusable components architecture')) {
+                  // Special case for "Design Product and Design System" project (ID 4)
+                  if (title === "Built from the Ground Up") {
+                    return <PenTool className="h-5 w-5" />;
+                  } else if (title === "Hands-on Frontend Work") {
+                    return <Code className="h-5 w-5" />;
+                  } else if (title === "Team Enablement & Education") {
+                    return <UsersRound className="h-5 w-5" />;
+                  } else if (title === "User-Centric Collaboration") {
+                    return <Pencil className="h-5 w-5" />;
+                  } else if (title === "Process Improvement") {
+                    return <ListChecks className="h-5 w-5" />;
+                  } 
+                  // Other existing cases
+                  else if (title.includes('Reusable components architecture')) {
                     return <Network className="h-5 w-5" />;
                   } else if (title.includes('Backlog & Documentation')) {
                     return <FolderOpen className="h-5 w-5" />;
