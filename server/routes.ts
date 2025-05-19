@@ -5,6 +5,8 @@ import express from "express";
 import { insertContactMessageSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 import { sendContactFormEmail } from "./email";
+import { fallbackProjects, fallbackCaseStudies } from "./fallbackData";
+import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
@@ -19,10 +21,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
         projects = await storage.getProjects();
       }
       
-      res.json(projects);
+      // If we got real data from database, return it
+      if (projects && projects.length > 0) {
+        return res.json(projects);
+      }
+      
+      // If no projects found in database, use fallback data
+      log("Database connection issue - using fallback project data");
+      const fallbackData = category && category !== "all" 
+        ? fallbackProjects.filter(p => p.category === category) 
+        : fallbackProjects;
+        
+      res.json(fallbackData);
     } catch (error) {
       console.error("Error fetching projects:", error);
-      res.status(500).json({ message: "Error fetching projects" });
+      log("Database error - using fallback project data");
+      
+      // Use fallback data when database is unreachable
+      const category = req.query.category as string;
+      const fallbackData = category && category !== "all" 
+        ? fallbackProjects.filter(p => p.category === category) 
+        : fallbackProjects;
+        
+      res.json(fallbackData);
     }
   });
 
@@ -31,14 +52,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const id = parseInt(req.params.id);
       const project = await storage.getProjectById(id);
       
-      if (!project) {
-        return res.status(404).json({ message: "Project not found" });
+      if (project) {
+        return res.json(project);
       }
       
-      res.json(project);
+      // If project not found in database, check fallback data
+      const fallbackProject = fallbackProjects.find(p => p.id === id);
+      if (fallbackProject) {
+        log(`Database connection issue - using fallback data for project ${id}`);
+        return res.json(fallbackProject);
+      }
+      
+      return res.status(404).json({ message: "Project not found" });
     } catch (error) {
       console.error("Error fetching project:", error);
-      res.status(500).json({ message: "Error fetching project" });
+      
+      // Check fallback data when database is unreachable
+      const id = parseInt(req.params.id);
+      const fallbackProject = fallbackProjects.find(p => p.id === id);
+      
+      if (fallbackProject) {
+        log(`Database error - using fallback data for project ${id}`);
+        return res.json(fallbackProject);
+      }
+      
+      res.status(404).json({ message: "Project not found" });
     }
   });
 
@@ -47,14 +85,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const projectId = parseInt(req.params.projectId);
       const caseStudy = await storage.getCaseStudyByProjectId(projectId);
       
-      if (!caseStudy) {
-        return res.status(404).json({ message: "Case study not found" });
+      if (caseStudy) {
+        return res.json(caseStudy);
       }
       
-      res.json(caseStudy);
+      // If case study not found in database, check fallback data
+      const fallbackCaseStudy = fallbackCaseStudies[projectId];
+      if (fallbackCaseStudy) {
+        log(`Database connection issue - using fallback data for case study ${projectId}`);
+        return res.json(fallbackCaseStudy);
+      }
+      
+      return res.status(404).json({ message: "Case study not found" });
     } catch (error) {
       console.error("Error fetching case study:", error);
-      res.status(500).json({ message: "Error fetching case study" });
+      
+      // Check fallback data when database is unreachable
+      const projectId = parseInt(req.params.projectId);
+      const fallbackCaseStudy = fallbackCaseStudies[projectId];
+      
+      if (fallbackCaseStudy) {
+        log(`Database error - using fallback data for case study ${projectId}`);
+        return res.json(fallbackCaseStudy);
+      }
+      
+      res.status(404).json({ message: "Case study not found" });
     }
   });
 

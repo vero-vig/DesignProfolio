@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { storage, DatabaseStorage } from "./storage";
+import { db, testConnection } from "./db";
 
 const app = express();
 app.use(express.json());
@@ -38,6 +39,21 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Test database connection first
+  try {
+    const { testConnection } = await import('./db');
+    const isConnected = await testConnection();
+    
+    if (!isConnected) {
+      log("Warning: Database connection test failed. Will retry during operation.");
+    } else {
+      log("Database connection test successful.");
+    }
+  } catch (error) {
+    console.error("Database connection test error:", error);
+    log("Database connection test failed, but will continue with application startup.");
+  }
+  
   // Initialize database with sample data if it's empty
   if (storage instanceof DatabaseStorage) {
     try {
@@ -45,6 +61,7 @@ app.use((req, res, next) => {
       log("Database initialized with sample data if needed.");
     } catch (error) {
       console.error("Error initializing database:", error);
+      log("Failed to initialize database with sample data. The application will continue, but some features may not work properly.");
     }
   }
   
