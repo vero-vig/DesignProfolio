@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
-import resume from "@/assets/Veronica_Vignoni_CV.pdf";
+import ResumeDownloadMenu from "./ResumeDownloadMenu";
 
 export default function AboutSection() {
   return (
@@ -83,12 +83,10 @@ export default function AboutSection() {
               </div>
             </div>
             
-            <Button 
-              asChild
-              className="rounded-full"
-            >
-              <a href={resume} download="Vero_CV.pdf">Download CV</a>
-            </Button>
+            <ResumeDownloadMenu 
+              className="bg-primary text-white" 
+              buttonText="Download CV"
+            />
           </motion.div>
         </div>
       </div>

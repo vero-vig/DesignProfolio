@@ -16,7 +16,7 @@ import {
   Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
-import resume from "@/assets/Veronica_Vignoni_CV.pdf";
+import ResumeDownloadMenu from "@/components/ResumeDownloadMenu";
 
 export default function CaseStudyPage() {
   const [, setLocation] = useLocation();
@@ -191,13 +191,11 @@ export default function CaseStudyPage() {
               </div>
               
               <div className="mt-6">
-                <a 
-                  href={resume} 
-                  download="Vero_CV.pdf"
-                  className="flex items-center justify-center w-full bg-primary text-white px-6 py-3 rounded-full hover:bg-opacity-90 transition-colors duration-300"
-                >
-                  Download CV <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
+                <ResumeDownloadMenu 
+                  className="w-full flex justify-center bg-primary text-white px-6 py-3 hover:bg-opacity-90 transition-colors duration-300"
+                  buttonVariant="ghost"
+                  buttonText="Download CV"
+                />
               </div>
             </div>
           </div>
