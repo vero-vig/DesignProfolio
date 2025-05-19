@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { Project, CaseStudy } from "@shared/schema";
+import PricingDashboard from "@/components/ui/PricingDashboard";
 
 interface CaseStudyModalProps {
   projectId: number;
@@ -80,11 +81,17 @@ export default function CaseStudyModal({ projectId, onClose }: CaseStudyModalPro
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-2">
-            <img 
-              src={project.imageSrc} 
-              alt={project.title} 
-              className="rounded-xl shadow-md w-full h-auto" 
-            />
+            {project.id === 4 ? (
+              <div className="rounded-xl shadow-md w-full h-auto overflow-hidden">
+                <PricingDashboard />
+              </div>
+            ) : (
+              <img 
+                src={project.imageSrc} 
+                alt={project.title} 
+                className="rounded-xl shadow-md w-full h-auto" 
+              />
+            )}
           </div>
           
           <div>
