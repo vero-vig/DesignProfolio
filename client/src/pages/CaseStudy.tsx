@@ -254,42 +254,60 @@ export default function CaseStudyPage() {
           )}
           
           {/* Results/Outcomes Section */}
-          {caseStudy.outcomes && (
+          {caseStudy.results && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-4">Results & Impact</h3>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <p className="text-gray-600">
-                  {caseStudy.outcomes}
-                </p>
+              <div className="space-y-4">
+                {Array.isArray(caseStudy.results) ? (
+                  (caseStudy.results as any[]).map((result, index) => (
+                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                      <div className="bg-primary text-white text-xl sm:text-2xl font-bold p-3 rounded-full h-14 w-14 flex items-center justify-center">
+                        {result.metric}
+                      </div>
+                      <p className="text-gray-600">{result.description}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <p className="text-gray-600 italic">Results information not available</p>
+                  </div>
+                )}
               </div>
             </div>
           )}
           
           {/* Key Learnings Section */}
-          {caseStudy.learnings && (
+          {caseStudy.keyLearnings && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <p className="text-gray-600">
-                  {caseStudy.learnings}
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {Array.isArray(caseStudy.keyLearnings) ? (
+                  (caseStudy.keyLearnings as any[]).map((learning, index) => (
+                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
+                      <h4 className="font-semibold text-primary mb-2">{learning.title}</h4>
+                      <p className="text-gray-600">{learning.description}</p>
+                    </div>
+                  ))
+                ) : (
+                  <div className="bg-white p-6 rounded-xl shadow-sm col-span-2">
+                    <p className="text-gray-600 italic">Key learnings information not available</p>
+                  </div>
+                )}
               </div>
             </div>
           )}
           
-          {/* Next Case Study Section (if applicable) */}
-          {caseStudy.nextProjectId && (
-            <div className="text-center mt-16">
-              <h3 className="text-xl font-semibold mb-4">Explore More Work</h3>
-              <Button 
-                variant="default" 
-                className="px-6"
-                onClick={() => setLocation(`/case-study/${caseStudy.nextProjectId}`)}
-              >
-                Next Case Study
-              </Button>
-            </div>
-          )}
+          {/* Explore More Work Section */}
+          <div className="text-center mt-16">
+            <h3 className="text-xl font-semibold mb-4">Explore More Work</h3>
+            <Button 
+              variant="default" 
+              className="px-6"
+              onClick={() => setLocation("/#portfolio")}
+            >
+              View All Projects
+            </Button>
+          </div>
         </div>
       </main>
       <FooterSimple />
