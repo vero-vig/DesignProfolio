@@ -19,6 +19,13 @@ interface ImageGalleryProps {
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImages, title }) => {
   // If no original images are provided, use the thumbnails for lightbox too
   const fullSizeImages = originalImages || images;
+  
+  // Debug log to check what images we're getting
+  console.log('Gallery images:', { 
+    thumbnails: images, 
+    originals: originalImages,
+    using: fullSizeImages
+  });
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
