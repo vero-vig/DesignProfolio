@@ -394,6 +394,24 @@ export default function CaseStudyPage() {
             </div>
           </div>
           
+          {caseStudy.galleryImages && caseStudy.galleryImages.length > 0 && (
+            <div className="mb-10">
+              <h3 className="text-2xl font-semibold mb-6">Gallery</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {caseStudy.galleryImages.map((imageUrl, index) => (
+                  <div key={index} className="relative rounded-xl overflow-hidden shadow-md group">
+                    <OptimizedImage
+                      src={imageUrl}
+                      alt={`${project.title} - Gallery image ${index + 1}`}
+                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
           <div className="mb-10">
             <h3 className="text-2xl font-semibold mb-6">Results & Impact</h3>
             

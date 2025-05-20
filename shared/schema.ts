@@ -30,6 +30,7 @@ export const caseStudies = pgTable("case_studies", {
   overview: text("overview").notNull(),
   challenges: json("challenges").notNull(),
   process: json("process").notNull(),
+  galleryImages: text("gallery_images").array(),
   results: json("results").notNull(),
   keyLearnings: json("key_learnings").notNull(),
 });
@@ -67,6 +68,7 @@ export const insertCaseStudySchema = createInsertSchema(caseStudies).pick({
   overview: true,
   challenges: true,
   process: true,
+  galleryImages: true,
   results: true,
   keyLearnings: true,
 });
