@@ -149,11 +149,11 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImag
       {/* Lightbox */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
           <button
-            className="absolute top-4 right-4 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors z-10"
+            className="absolute top-4 right-4 text-white p-2 rounded-full bg-purple-800/70 hover:bg-purple-700 transition-colors z-10"
             onClick={closeLightbox}
           >
             <X className="h-6 w-6" />
@@ -161,28 +161,33 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImag
 
           {images.length > 1 && (
             <button
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-3 rounded-full bg-purple-800/70 hover:bg-purple-700 transition-colors"
               onClick={navigatePrevious}
             >
-              <ChevronLeft className="h-6 w-6" />
+              <ChevronLeft className="h-7 w-7" />
             </button>
           )}
 
-          <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+          <div className="w-[90vw] h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <OptimizedImage
               src={fullSizeImages[currentImageIndex]}
               alt={`${title} - Image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-[80vh] object-contain"
+              className="max-w-full max-h-full w-auto h-auto object-contain"
               loading="eager"
             />
+            
+            {/* Image counter display */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+              {currentImageIndex + 1} / {images.length}
+            </div>
           </div>
 
           {images.length > 1 && (
             <button
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-3 rounded-full bg-purple-800/70 hover:bg-purple-700 transition-colors"
               onClick={navigateNext}
             >
-              <ChevronRight className="h-6 w-6" />
+              <ChevronRight className="h-7 w-7" />
             </button>
           )}
         </div>
