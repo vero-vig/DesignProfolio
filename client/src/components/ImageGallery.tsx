@@ -15,85 +15,65 @@ interface ImageGalleryProps {
   title: string;
 }
 
-// Custom arrow components
-const NextArrow = (props: any) => {
-  const { onClick, currentSlide, slideCount, slidesToShow } = props;
-  
-  // For cases when we have fewer slides than the number we want to show
-  if (slideCount <= slidesToShow) {
-    return null;
-  }
-  
-  // Calculate if we're at the last possible slide position
-  const lastSlideIndex = Math.max(0, slideCount - slidesToShow);
-  const isLastSlide = currentSlide >= lastSlideIndex;
-  
-  // Hide the arrow when we're at the last set of slides
-  if (isLastSlide) {
-    return null;
-  }
-  
-  return (
-    <div
-      className="gallery-next-arrow"
-      onClick={onClick}
-    >
-      <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
-        <ChevronRight className="h-6 w-6 text-purple-600" />
-      </div>
-    </div>
-  );
-};
-
-const PrevArrow = (props: any) => {
-  const { onClick, currentSlide, slideCount, slidesToShow } = props;
-  
-  // For cases when we have fewer slides than the number we want to show
-  if (slideCount <= slidesToShow) {
-    return null;
-  }
-  
-  // Hide the arrow when we're at the first slide
-  if (currentSlide === 0) return null;
-  
-  return (
-    <div
-      className="gallery-prev-arrow"
-      onClick={onClick}
-    >
-      <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
-        <ChevronLeft className="h-6 w-6 text-purple-600" />
-      </div>
-    </div>
-  );
-};
-
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Determine if we should show navigation elements
-  const showNavigation = images.length > 4;
-  const slidesToShow = Math.min(4, images.length);
+  const maxSlides = 4; // Maximum number of slides to show at once
+  const slidesToShow = Math.min(maxSlides, images.length);
+  const lastSlideIndex = Math.max(0, images.length - slidesToShow);
   
+  // Should we show arrows?
+  const showArrows = images.length > slidesToShow;
+  const showLeftArrow = showArrows && currentSlide > 0;
+  const showRightArrow = showArrows && currentSlide < lastSlideIndex;
+  
+  // Custom arrow components
+  const NextArrow = (props: any) => {
+    const { onClick } = props;
+    if (!showRightArrow) return null;
+    
+    return (
+      <div className="gallery-next-arrow" onClick={onClick}>
+        <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
+          <ChevronRight className="h-6 w-6 text-purple-600" />
+        </div>
+      </div>
+    );
+  };
+
+  const PrevArrow = (props: any) => {
+    const { onClick } = props;
+    if (!showLeftArrow) return null;
+    
+    return (
+      <div className="gallery-prev-arrow" onClick={onClick}>
+        <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
+          <ChevronLeft className="h-6 w-6 text-purple-600" />
+        </div>
+      </div>
+    );
+  };
+
   // Slider settings for the carousel
   const settings: {[key: string]: any} = {
-    dots: showNavigation,
+    dots: showArrows,
     infinite: false,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    arrows: showNavigation,
-    nextArrow: showNavigation ? <NextArrow /> : undefined,
-    prevArrow: showNavigation ? <PrevArrow /> : undefined,
+    arrows: showArrows,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (_: any, next: number) => setCurrentSlide(next),
     responsive: [
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: Math.min(3, images.length),
           slidesToScroll: 1,
-          arrows: images.length > 3,
-          dots: images.length > 3,
         },
       },
       {
@@ -101,8 +81,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
         settings: {
           slidesToShow: Math.min(2, images.length),
           slidesToScroll: 1,
-          arrows: images.length > 2,
-          dots: images.length > 2,
         },
       },
       {
@@ -110,8 +88,6 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: images.length > 1,
-          dots: images.length > 1,
         },
       },
     ],
@@ -173,12 +149,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
             <X className="h-6 w-6" />
           </button>
 
-          <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
-            onClick={navigatePrevious}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
+          {images.length > 1 && (
+            <button
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              onClick={navigatePrevious}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+          )}
 
           <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <OptimizedImage
@@ -189,12 +167,14 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
             />
           </div>
 
-          <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
-            onClick={navigateNext}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+          {images.length > 1 && (
+            <button
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
+              onClick={navigateNext}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          )}
         </div>
       )}
     </div>
