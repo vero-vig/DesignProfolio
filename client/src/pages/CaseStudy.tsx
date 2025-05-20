@@ -257,20 +257,19 @@ export default function CaseStudyPage() {
           {caseStudy.results && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-4">Results & Impact</h3>
-              <div className="space-y-4">
+              <div className="bg-white p-6 rounded-xl shadow-sm">
                 {Array.isArray(caseStudy.results) ? (
-                  (caseStudy.results as any[]).map((result, index) => (
-                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                      <div className="bg-primary text-white text-xl sm:text-2xl font-bold p-3 rounded-full h-14 w-14 flex items-center justify-center">
-                        {result.metric}
-                      </div>
-                      <p className="text-gray-600">{result.description}</p>
-                    </div>
-                  ))
+                  <ul className="list-disc pl-5 space-y-2">
+                    {(caseStudy.results as any[]).map((result, index) => (
+                      <li key={index} className="text-gray-600">
+                        <span className="font-medium text-primary">{result.metric}</span> — {result.description}
+                      </li>
+                    ))}
+                  </ul>
                 ) : (
-                  <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <p className="text-gray-600 italic">Results information not available</p>
-                  </div>
+                  <p className="text-gray-600">
+                    No results available.
+                  </p>
                 )}
               </div>
             </div>
@@ -280,18 +279,19 @@ export default function CaseStudyPage() {
           {caseStudy.keyLearnings && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-white p-6 rounded-xl shadow-sm">
                 {Array.isArray(caseStudy.keyLearnings) ? (
-                  (caseStudy.keyLearnings as any[]).map((learning, index) => (
-                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                      <h4 className="font-semibold text-primary mb-2">{learning.title}</h4>
-                      <p className="text-gray-600">{learning.description}</p>
-                    </div>
-                  ))
+                  <ul className="list-disc pl-5 space-y-2">
+                    {(caseStudy.keyLearnings as any[]).map((learning, index) => (
+                      <li key={index} className="text-gray-600">
+                        <span className="font-semibold">{learning.title}</span> — {learning.description}
+                      </li>
+                    ))}
+                  </ul>
                 ) : (
-                  <div className="bg-white p-6 rounded-xl shadow-sm col-span-2">
-                    <p className="text-gray-600 italic">Key learnings information not available</p>
-                  </div>
+                  <p className="text-gray-600">
+                    No key learnings available.
+                  </p>
                 )}
               </div>
             </div>
