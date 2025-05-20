@@ -401,6 +401,7 @@ export default function CaseStudyPage() {
               <h3 className="text-2xl font-semibold mb-6">Gallery</h3>
               <ImageGallery 
                 images={caseStudy.galleryImages} 
+                originalImages={caseStudy.originalImages}
                 title={project.title}
               />
             </div>

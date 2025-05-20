@@ -12,10 +12,13 @@ import './imageGallery.css';
 
 interface ImageGalleryProps {
   images: string[];
+  originalImages?: string[];
   title: string;
 }
 
-export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
+export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImages, title }) => {
+  // If no original images are provided, use the thumbnails for lightbox too
+  const fullSizeImages = originalImages || images;
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -160,7 +163,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
 
           <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <OptimizedImage
-              src={images[currentImageIndex]}
+              src={fullSizeImages[currentImageIndex]}
               alt={`${title} - Image ${currentImageIndex + 1}`}
               className="max-w-full max-h-[80vh] object-contain"
               loading="eager"
