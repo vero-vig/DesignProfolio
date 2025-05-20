@@ -17,7 +17,12 @@ interface ImageGalleryProps {
 
 // Custom arrow components
 const NextArrow = (props: any) => {
-  const { onClick } = props;
+  const { onClick, currentSlide, slideCount, slidesToShow } = props;
+  
+  // Hide the arrow when we're at the last slide
+  const isLastSlide = currentSlide === slideCount - slidesToShow;
+  if (isLastSlide) return null;
+  
   return (
     <div
       className="gallery-next-arrow"
@@ -31,7 +36,11 @@ const NextArrow = (props: any) => {
 };
 
 const PrevArrow = (props: any) => {
-  const { onClick } = props;
+  const { onClick, currentSlide } = props;
+  
+  // Hide the arrow when we're at the first slide
+  if (currentSlide === 0) return null;
+  
   return (
     <div
       className="gallery-prev-arrow"
@@ -53,15 +62,15 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
   const slidesToShow = Math.min(3, images.length);
   
   // Slider settings for the carousel
-  const settings = {
+  const settings: {[key: string]: any} = {
     dots: showNavigation,
     infinite: false,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
     arrows: showNavigation,
-    nextArrow: showNavigation ? <NextArrow /> : null,
-    prevArrow: showNavigation ? <PrevArrow /> : null,
+    nextArrow: showNavigation ? <NextArrow /> : undefined,
+    prevArrow: showNavigation ? <PrevArrow /> : undefined,
     responsive: [
       {
         breakpoint: 1024,
