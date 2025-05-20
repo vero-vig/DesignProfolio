@@ -48,22 +48,28 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Determine if we should show navigation elements
+  const showNavigation = images.length > 3;
+  const slidesToShow = Math.min(3, images.length);
+  
   // Slider settings for the carousel
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: showNavigation,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    arrows: showNavigation,
+    nextArrow: showNavigation ? <NextArrow /> : null,
+    prevArrow: showNavigation ? <PrevArrow /> : null,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(2, images.length),
           slidesToScroll: 1,
+          arrows: images.length > 2,
+          dots: images.length > 2,
         },
       },
       {
@@ -71,6 +77,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: images.length > 1,
+          dots: images.length > 1,
         },
       },
     ],
