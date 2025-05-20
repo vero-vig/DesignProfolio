@@ -111,12 +111,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImag
 
   const navigateNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % fullSizeImages.length);
   };
 
   const navigatePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + fullSizeImages.length) % fullSizeImages.length);
   };
 
   return (

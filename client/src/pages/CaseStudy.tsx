@@ -401,7 +401,7 @@ export default function CaseStudyPage() {
               <h3 className="text-2xl font-semibold mb-6">Gallery</h3>
               <ImageGallery 
                 images={caseStudy.galleryImages} 
-                originalImages={caseStudy.originalImages}
+                originalImages={Array.isArray(caseStudy.originalImages) ? caseStudy.originalImages : undefined}
                 title={project.title}
               />
             </div>
