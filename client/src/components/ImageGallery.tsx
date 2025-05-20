@@ -19,12 +19,16 @@ interface ImageGalleryProps {
 const NextArrow = (props: any) => {
   const { onClick, currentSlide, slideCount, slidesToShow } = props;
   
-  // Calculate if we're at the last slide that can be shown
-  // Note: Need to check if we're at or beyond the last possible slide position
+  // For cases when we have fewer slides than the number we want to show
+  if (slideCount <= slidesToShow) {
+    return null;
+  }
+  
+  // Calculate if we're at the last possible slide position
   const lastSlideIndex = Math.max(0, slideCount - slidesToShow);
   const isLastSlide = currentSlide >= lastSlideIndex;
   
-  // Hide the arrow when we're showing the last set of slides
+  // Hide the arrow when we're at the last set of slides
   if (isLastSlide) {
     return null;
   }
@@ -42,7 +46,12 @@ const NextArrow = (props: any) => {
 };
 
 const PrevArrow = (props: any) => {
-  const { onClick, currentSlide } = props;
+  const { onClick, currentSlide, slideCount, slidesToShow } = props;
+  
+  // For cases when we have fewer slides than the number we want to show
+  if (slideCount <= slidesToShow) {
+    return null;
+  }
   
   // Hide the arrow when we're at the first slide
   if (currentSlide === 0) return null;
