@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import FooterSimple from "@/components/FooterSimple";
 import MobileMenu from "@/components/MobileMenu";
 import { OptimizedImage } from "@/components/OptimizedImage";
+import ImageGallery from "@/components/ImageGallery";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, 
