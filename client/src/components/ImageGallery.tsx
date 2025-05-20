@@ -70,12 +70,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
         <Slider {...settings}>
           {images.map((image, index) => (
             <div key={index} className="px-2 focus:outline-none" onClick={() => openLightbox(index)}>
-              <div className="aspect-w-16 aspect-h-12 cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white p-1">
-                <div className="relative h-48 w-full">
+              <div className="cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white p-1">
+                <div className="w-full h-[200px] relative">
                   <OptimizedImage
                     src={image}
                     alt={`${title} - Image ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="absolute inset-0 w-full h-full object-contain"
                   />
                 </div>
               </div>
@@ -104,11 +104,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
             &lt;
           </button>
 
-          <div className="max-w-full max-h-[80vh] relative" onClick={(e) => e.stopPropagation()}>
+          <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
             <OptimizedImage
               src={images[currentImageIndex]}
               alt={`${title} - Image ${currentImageIndex + 1}`}
               className="max-w-full max-h-[80vh] object-contain"
+              loading="eager"
             />
           </div>
 
