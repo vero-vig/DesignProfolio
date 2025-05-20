@@ -257,19 +257,18 @@ export default function CaseStudyPage() {
           {caseStudy.results && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-4">Results & Impact</h3>
-              <div className="bg-white p-6 rounded-xl shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {Array.isArray(caseStudy.results) ? (
-                  <ul className="list-disc pl-5 space-y-2">
-                    {(caseStudy.results as any[]).map((result, index) => (
-                      <li key={index} className="text-gray-600">
-                        <span className="font-medium text-primary">{result.metric}</span> — {result.description}
-                      </li>
-                    ))}
-                  </ul>
+                  (caseStudy.results as any[]).map((result, index) => (
+                    <div key={index} className="bg-white p-6 rounded-xl shadow-sm text-center">
+                      <p className="text-3xl font-bold text-primary mb-4">{result.metric}</p>
+                      <p className="text-gray-600">{result.description}</p>
+                    </div>
+                  ))
                 ) : (
-                  <p className="text-gray-600">
-                    No results available.
-                  </p>
+                  <div className="bg-white p-6 rounded-xl shadow-sm col-span-3">
+                    <p className="text-gray-600 text-center">No results available.</p>
+                  </div>
                 )}
               </div>
             </div>
