@@ -14,7 +14,9 @@ import {
   Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
   Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
   FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale,
-  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks, Terminal
+  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks, Terminal,
+  Accessibility, EarOff, BarChart3, ClipboardCheck, Components, Figma, 
+  Repeat, EarCrosshair, Users2, Hand
 } from "lucide-react";
 import { CaseStudy, Project } from "@shared/schema";
 import ResumeDownloadMenu from "@/components/ResumeDownloadMenu";
@@ -213,48 +215,60 @@ export default function CaseStudyPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {(caseStudy.challenges as any[]).map((challenge, index) => {
                 // Select the appropriate icon based on the challenge title or content
-                const getChallengeIcon = (title: string, description: string = '') => {
-                  // Client's specific icon requests for "The Challenge" section
-                  if (title.includes('Balance reuse with innovation')) {
-                    return <Scale className="h-6 w-6" />;
-                  } else if (title.includes('User Growth without UX Scaling')) {
-                    return <Pencil className="h-6 w-6" />;
-                  } else if (title.includes('Lack of Ownership & Communication')) {
-                    return <MessagesSquare className="h-6 w-6" />;
+                const getChallengeIcon = (challenge: any) => {
+                  // Use the icon property from the database if available
+                  if (challenge.icon) {
+                    switch (challenge.icon.toLowerCase()) {
+                      case 'accessibility':
+                        return <Accessibility className="h-6 w-6" />;
+                      case 'ear-deaf':
+                        return <EarOff className="h-6 w-6" />;
+                      case 'scale':
+                        return <Scale className="h-6 w-6" />;
+                      case 'shield-alt':
+                        return <ShieldAlert className="h-6 w-6" />;
+                      case 'users':
+                        return <Users className="h-6 w-6" />;
+                      case 'code':
+                        return <Code className="h-6 w-6" />;
+                      case 'database':
+                        return <Database className="h-6 w-6" />;
+                      case 'puzzle':
+                        return <Puzzle className="h-6 w-6" />;
+                      case 'lock':
+                        return <Lock className="h-6 w-6" />;
+                      case 'zap':
+                        return <Zap className="h-6 w-6" />;
+                      case 'clock':
+                        return <Clock className="h-6 w-6" />;
+                      case 'chart':
+                      case 'chart-bar':
+                        return <BarChart className="h-6 w-6" />;
+                      case 'line-chart':
+                        return <LineChart className="h-6 w-6" />;
+                      default:
+                        return <Target className="h-6 w-6" />;
+                    }
                   }
                   
+                  // Fallback to title/description based matching if no icon property
+                  const title = challenge.title;
+                  const description = challenge.description || '';
                   const titleLower = title.toLowerCase();
                   const descLower = description.toLowerCase();
-                  const combinedText = titleLower + ' ' + descLower;
                   
-                  if (titleLower.includes('time') || titleLower.includes('deadline') || combinedText.includes('schedule')) {
-                    return <Clock className="h-6 w-6" />;
-                  } else if (titleLower.includes('user') || titleLower.includes('customer') || combinedText.includes('stakeholder')) {
-                    return <Users className="h-6 w-6" />;
-                  } else if (titleLower.includes('security') || titleLower.includes('privacy') || combinedText.includes('protect')) {
-                    return <Lock className="h-6 w-6" />;
-                  } else if (titleLower.includes('risk') || titleLower.includes('compliance') || combinedText.includes('regulatory')) {
-                    return <ShieldAlert className="h-6 w-6" />;
-                  } else if (titleLower.includes('performance') || titleLower.includes('speed') || combinedText.includes('fast')) {
-                    return <Zap className="h-6 w-6" />;
-                  } else if (titleLower.includes('goal') || titleLower.includes('objective') || combinedText.includes('target')) {
-                    return <Target className="h-6 w-6" />;
-                  } else if (titleLower.includes('tech') || titleLower.includes('technology') || combinedText.includes('code')) {
-                    return <Code className="h-6 w-6" />;
-                  } else if (titleLower.includes('data') || titleLower.includes('information') || combinedText.includes('database')) {
-                    return <Database className="h-6 w-6" />;
-                  } else if (titleLower.includes('budget') || titleLower.includes('cost') || combinedText.includes('expense')) {
-                    return <LineChart className="h-6 w-6" />;
-                  } else if (titleLower.includes('complex') || titleLower.includes('integration') || combinedText.includes('system')) {
-                    return <Puzzle className="h-6 w-6" />;
-                  } else if (titleLower.includes('balance') || combinedText.includes('balance')) {
+                  if (titleLower.includes('inclusivity') || descLower.includes('inclusivity')) {
+                    return <Accessibility className="h-6 w-6" />;
+                  } else if (titleLower.includes('visual') || descLower.includes('visual')) {
+                    return <EarOff className="h-6 w-6" />;
+                  } else if (titleLower.includes('scalability') || descLower.includes('scalability')) {
                     return <Scale className="h-6 w-6" />;
                   } else {
-                    return <ShieldAlert className="h-6 w-6" />;
+                    return <Target className="h-6 w-6" />;
                   }
                 };
 
-                const icon = getChallengeIcon(challenge.title, challenge.description);
+                const icon = getChallengeIcon(challenge);
                 
                 return (
                   <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
