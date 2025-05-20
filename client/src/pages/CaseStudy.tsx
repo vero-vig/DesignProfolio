@@ -395,13 +395,12 @@ export default function CaseStudyPage() {
             </div>
           </div>
           
-          {/* Gallery Section - Handle both field name formats (galleryImages and gallery_images) */}
-          {((caseStudy.galleryImages && caseStudy.galleryImages.length > 0) || 
-            (caseStudy.gallery_images && caseStudy.gallery_images.length > 0)) && (
+          {/* Gallery Section */}
+          {caseStudy.galleryImages && caseStudy.galleryImages.length > 0 && (
             <div className="mb-10">
               <h3 className="text-2xl font-semibold mb-6">Gallery</h3>
               <ImageGallery 
-                images={caseStudy.galleryImages || caseStudy.gallery_images} 
+                images={caseStudy.galleryImages} 
                 title={project.title}
               />
             </div>
