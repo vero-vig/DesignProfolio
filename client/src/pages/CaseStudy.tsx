@@ -9,15 +9,11 @@ import { OptimizedImage } from "@/components/OptimizedImage";
 import ImageGallery from "@/components/ImageGallery";
 import { Button } from "@/components/ui/button";
 import { 
-  ArrowLeft, ExternalLink, Search, FileText, Lightbulb, PenTool, Layers, BarChart, 
-  Clock, Users, Lock, ShieldAlert, Zap, Target, Code, Database, UserCheck, 
-  Settings, Layout, Smartphone, MessageSquare, Brain, Workflow, FileCheck, TestTube, 
-  Laptop, Presentation, ClipboardList, LineChart, Gauge, Puzzle, Rocket,
-  FolderOpen, Network, ScreenShare, UsersRound, Globe, Monitor, Scale,
-  Pencil, MessagesSquare, User, CalendarDays, Timer, ListChecks, Terminal,
-  Accessibility, EarOff, BarChart3, ClipboardCheck, Components, Figma, 
-  Repeat, EarCrosshair, Users2, Hand
+  ArrowLeft, 
+  ExternalLink,
+  Target 
 } from "lucide-react";
+import { IconMapper } from "@/components/ui/IconMapper";
 import { CaseStudy, Project } from "@shared/schema";
 import ResumeDownloadMenu from "@/components/ResumeDownloadMenu";
 
@@ -215,56 +211,22 @@ export default function CaseStudyPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {(caseStudy.challenges as any[]).map((challenge, index) => {
                 // Select the appropriate icon based on the challenge title or content
+                // Use our new IconMapper component to render icons based on the database values
                 const getChallengeIcon = (challenge: any) => {
-                  // Use the icon property from the database if available
                   if (challenge.icon) {
-                    switch (challenge.icon.toLowerCase()) {
-                      case 'accessibility':
-                        return <Accessibility className="h-6 w-6" />;
-                      case 'ear-deaf':
-                        return <EarOff className="h-6 w-6" />;
-                      case 'scale':
-                        return <Scale className="h-6 w-6" />;
-                      case 'shield-alt':
-                        return <ShieldAlert className="h-6 w-6" />;
-                      case 'users':
-                        return <Users className="h-6 w-6" />;
-                      case 'code':
-                        return <Code className="h-6 w-6" />;
-                      case 'database':
-                        return <Database className="h-6 w-6" />;
-                      case 'puzzle':
-                        return <Puzzle className="h-6 w-6" />;
-                      case 'lock':
-                        return <Lock className="h-6 w-6" />;
-                      case 'zap':
-                        return <Zap className="h-6 w-6" />;
-                      case 'clock':
-                        return <Clock className="h-6 w-6" />;
-                      case 'chart':
-                      case 'chart-bar':
-                        return <BarChart className="h-6 w-6" />;
-                      case 'line-chart':
-                        return <LineChart className="h-6 w-6" />;
-                      default:
-                        return <Target className="h-6 w-6" />;
-                    }
+                    return <IconMapper iconName={challenge.icon} className="h-6 w-6" />;
                   }
                   
-                  // Fallback to title/description based matching if no icon property
-                  const title = challenge.title;
-                  const description = challenge.description || '';
-                  const titleLower = title.toLowerCase();
-                  const descLower = description.toLowerCase();
-                  
-                  if (titleLower.includes('inclusivity') || descLower.includes('inclusivity')) {
-                    return <Accessibility className="h-6 w-6" />;
-                  } else if (titleLower.includes('visual') || descLower.includes('visual')) {
-                    return <EarOff className="h-6 w-6" />;
-                  } else if (titleLower.includes('scalability') || descLower.includes('scalability')) {
-                    return <Scale className="h-6 w-6" />;
+                  // Fallback for legacy data without icon property
+                  const title = challenge.title?.toLowerCase() || '';
+                  if (title.includes('inclusivity')) {
+                    return <IconMapper iconName="accessibility" className="h-6 w-6" />;
+                  } else if (title.includes('visual')) {
+                    return <IconMapper iconName="ear-off" className="h-6 w-6" />;
+                  } else if (title.includes('scalability')) {
+                    return <IconMapper iconName="scale" className="h-6 w-6" />;
                   } else {
-                    return <Target className="h-6 w-6" />;
+                    return <IconMapper iconName="target" className="h-6 w-6" />;
                   }
                 };
 
