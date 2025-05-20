@@ -168,13 +168,15 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, originalImag
             </button>
           )}
 
-          <div className="w-[90vw] h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-            <OptimizedImage
-              src={fullSizeImages[currentImageIndex]}
-              alt={`${title} - Image ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full w-auto h-auto object-contain"
-              loading="eager"
-            />
+          <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <div className="w-full h-full flex items-center justify-center">
+              <OptimizedImage
+                src={fullSizeImages[currentImageIndex]}
+                alt={`${title} - Image ${currentImageIndex + 1}`}
+                className="max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain"
+                loading="eager"
+              />
+            </div>
             
             {/* Image counter display */}
             <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
