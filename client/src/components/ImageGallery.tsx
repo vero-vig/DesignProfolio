@@ -64,8 +64,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Determine if we should show navigation elements
-  const showNavigation = images.length > 3;
-  const slidesToShow = Math.min(3, images.length);
+  const showNavigation = images.length > 4;
+  const slidesToShow = Math.min(4, images.length);
   
   // Slider settings for the carousel
   const settings: {[key: string]: any} = {
@@ -78,6 +78,15 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
     nextArrow: showNavigation ? <NextArrow /> : undefined,
     prevArrow: showNavigation ? <PrevArrow /> : undefined,
     responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: Math.min(3, images.length),
+          slidesToScroll: 1,
+          arrows: images.length > 3,
+          dots: images.length > 3,
+        },
+      },
       {
         breakpoint: 1024,
         settings: {
@@ -129,7 +138,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
           {images.map((image, index) => (
             <div key={index} className="px-2 focus:outline-none" onClick={() => openLightbox(index)}>
               <div className="cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white p-1">
-                <div className="w-full h-[200px] relative">
+                <div className="w-full aspect-square relative">
                   <OptimizedImage
                     src={image}
                     alt={`${title} - Image ${index + 1}`}
