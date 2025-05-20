@@ -223,123 +223,21 @@ export default function CaseStudyPage() {
             <div className="relative">
               <div className="absolute left-6 h-full w-0.5 bg-gray-200 hidden md:block"></div>
               
-              {(caseStudy.process as any[]).map((step, index) => {
-                // Select the appropriate icon based on the specific step title
-                const getStepIcon = (title: string, description: string = '') => {
-                  // Client's specific icon requests for "My Process" section
-                  // Special case for "Design Product and Design System" project (ID 4)
-                  if (title === "Built from the Ground Up") {
-                    return <PenTool className="h-5 w-5" />;
-                  } else if (title === "Hands-on Frontend Work") {
-                    return <Code className="h-5 w-5" />;
-                  } else if (title === "Team Enablement & Education") {
-                    return <UsersRound className="h-5 w-5" />;
-                  } else if (title === "User-Centric Collaboration") {
-                    return <Pencil className="h-5 w-5" />;
-                  } else if (title === "Process Improvement") {
-                    return <ListChecks className="h-5 w-5" />;
-                  } 
-                  // Other existing cases
-                  else if (title.includes('Reusable components architecture')) {
-                    return <Network className="h-5 w-5" />;
-                  } else if (title.includes('Backlog & Documentation')) {
-                    return <FolderOpen className="h-5 w-5" />;
-                  } else if (title.includes('Demo & Stakeholders')) {
-                    return <ScreenShare className="h-5 w-5" />;
-                  } else if (title.includes('Team Growth & Mentorship')) {
-                    return <UsersRound className="h-5 w-5" />;
-                  } else if (title.includes('Permission Logic Rollout')) {
-                    return <FolderOpen className="h-5 w-5" />;
-                  } else if (title.includes('Stakeholder alignment') || title.includes('MVP Scoping')) {
-                    return <Monitor className="h-5 w-5" />;
-                  } else if (title.includes('Reestablished Ownership')) {
-                    return <User className="h-5 w-5" />;
-                  } else if (title.includes('Organized & Prioritized')) {
-                    return <ListChecks className="h-5 w-5" />;
-                  } else if (title.includes('Built a Lean Core Team')) {
-                    return <Laptop className="h-5 w-5" />;
-                  } else if (title.includes('User-Centered Enhancements')) {
-                    return <User className="h-5 w-5" />;
-                  } else if (title.includes('Improved Stakeholder Communication')) {
-                    return <MessagesSquare className="h-5 w-5" />;
-                  } else if (title.includes('Long-Term Planning')) {
-                    return <CalendarDays className="h-5 w-5" />;
-                  }
-                  
-                  // Generic matching for other steps
-                  const titleLower = title.toLowerCase();
-                  const descLower = description.toLowerCase();
-                  const combinedText = titleLower + ' ' + descLower;
-
-                  // Very specific matches
-                  if (titleLower.includes('tech stack') || titleLower.includes('integration') || combinedText.includes('code')) {
-                    return <Code className="h-5 w-5" />;
-                  } else if (titleLower.includes('user testing') || titleLower.includes('usability')) {
-                    return <UserCheck className="h-5 w-5" />;
-                  } else if (titleLower.includes('data') || titleLower.includes('database')) {
-                    return <Database className="h-5 w-5" />;
-                  } else if (titleLower.includes('workshop') || titleLower.includes('brainstorm')) {
-                    return <MessageSquare className="h-5 w-5" />;
-                  } else if (titleLower.includes('mobile') || titleLower.includes('responsive')) {
-                    return <Smartphone className="h-5 w-5" />;
-                  } else if (titleLower.includes('wireframe') || titleLower.includes('layout')) {
-                    return <Layout className="h-5 w-5" />;
-                  } else if (titleLower.includes('strategy') || titleLower.includes('planning')) {
-                    return <ClipboardList className="h-5 w-5" />;
-                  } else if (titleLower.includes('workflow') || titleLower.includes('process')) {
-                    return <Workflow className="h-5 w-5" />;
-                  } else if (titleLower.includes('testing') || titleLower.includes('qa')) {
-                    return <TestTube className="h-5 w-5" />;
-                  } else if (titleLower.includes('requirement') || titleLower.includes('specification')) {
-                    return <FileCheck className="h-5 w-5" />;
-                  } else if (titleLower.includes('analysis') || titleLower.includes('metrics')) {
-                    return <LineChart className="h-5 w-5" />;
-                  } else if (titleLower.includes('present') || titleLower.includes('pitch')) {
-                    return <Presentation className="h-5 w-5" />;
-                  } else if (titleLower.includes('performance') || titleLower.includes('speed')) {
-                    return <Gauge className="h-5 w-5" />;
-                  } else if (titleLower.includes('implementation') || titleLower.includes('develop')) {
-                    return <Puzzle className="h-5 w-5" />;
-                  } else if (titleLower.includes('deploy') || titleLower.includes('launch')) {
-                    return <Rocket className="h-5 w-5" />;
-                  }
-                  
-                  // More general matches
-                  else if (titleLower.includes('research') || titleLower.includes('discover')) {
-                    return <Search className="h-5 w-5" />;
-                  } else if (titleLower.includes('ideation') || titleLower.includes('idea')) {
-                    return <Lightbulb className="h-5 w-5" />;
-                  } else if (titleLower.includes('design') || titleLower.includes('prototype')) {
-                    return <PenTool className="h-5 w-5" />;
-                  } else if (titleLower.includes('configure') || titleLower.includes('setting')) {
-                    return <Settings className="h-5 w-5" />;
-                  } else if (titleLower.includes('concept') || titleLower.includes('thinking')) {
-                    return <Brain className="h-5 w-5" />;
-                  } else if (titleLower.includes('review') || titleLower.includes('evaluation')) {
-                    return <BarChart className="h-5 w-5" />;
-                  } else {
-                    return <Laptop className="h-5 w-5" />;
-                  }
-                };
-
-                const icon = getStepIcon(step.title, step.description);
-                
-                return (
-                  <div key={index} className="relative md:pl-16 pb-8">
-                    <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-primary text-white items-center justify-center">
-                      {icon}
-                    </div>
-                    <div className="flex md:hidden items-center mb-2">
-                      <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-3">
-                        {icon}
-                      </div>
-                      <h4 className="text-xl font-semibold">{step.title}</h4>
-                    </div>
-                    <h4 className="text-xl font-semibold mb-2 hidden md:block">{step.title}</h4>
-                    <p className="text-gray-600">{step.description}</p>
+              {(caseStudy.process as any[]).map((step, index) => (
+                <div key={index} className="relative md:pl-16 pb-8">
+                  <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-primary text-white items-center justify-center">
+                    <IconMapper iconName={step.icon || "target"} className="h-5 w-5" />
                   </div>
-                );
-              })}
+                  <div className="flex md:hidden items-center mb-2">
+                    <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-3">
+                      <IconMapper iconName={step.icon || "target"} className="h-4 w-4" />
+                    </div>
+                    <h4 className="text-xl font-semibold">{step.title}</h4>
+                  </div>
+                  <h4 className="text-xl font-semibold mb-2 hidden md:block">{step.title}</h4>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              ))}
             </div>
           </div>
           
@@ -355,37 +253,45 @@ export default function CaseStudyPage() {
             </div>
           )}
           
-          <div className="mb-10">
-            <h3 className="text-2xl font-semibold mb-6">Results & Impact</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              {(caseStudy.results as any[]).map((result, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-sm text-center">
-                  <div className="text-primary text-3xl font-bold mb-2">
-                    {result.metric}
-                  </div>
-                  <p className="text-gray-600">{result.description}</p>
-                </div>
-              ))}
+          {/* Results/Outcomes Section */}
+          {caseStudy.outcomes && (
+            <div className="mb-10">
+              <h3 className="text-2xl font-semibold mb-4">Results & Impact</h3>
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <p className="text-gray-600">
+                  {caseStudy.outcomes}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
           
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
-            <div className="text-gray-600">
-              {Array.isArray(caseStudy.keyLearnings) && 
-                caseStudy.keyLearnings.map((learning: {title: string, description: string}, index: number) => (
-                  <div key={index} className="mb-6">
-                    <h4 className="font-bold text-lg mb-2">{learning.title}</h4>
-                    <p>{learning.description}</p>
-                  </div>
-                ))
-              }
+          {/* Key Learnings Section */}
+          {caseStudy.learnings && (
+            <div className="mb-10">
+              <h3 className="text-2xl font-semibold mb-4">Key Learnings</h3>
+              <div className="bg-white p-6 rounded-xl shadow-sm">
+                <p className="text-gray-600">
+                  {caseStudy.learnings}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
+          
+          {/* Next Case Study Section (if applicable) */}
+          {caseStudy.nextProjectId && (
+            <div className="text-center mt-16">
+              <h3 className="text-xl font-semibold mb-4">Explore More Work</h3>
+              <Button 
+                variant="default" 
+                className="px-6"
+                onClick={() => setLocation(`/case-study/${caseStudy.nextProjectId}`)}
+              >
+                Next Case Study
+              </Button>
+            </div>
+          )}
         </div>
       </main>
-      
       <FooterSimple />
     </div>
   );
