@@ -1,16 +1,48 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { OptimizedImage } from './OptimizedImage';
 
 // Import slick carousel CSS
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+// Custom CSS for dots and arrows
+import './imageGallery.css';
+
 interface ImageGalleryProps {
   images: string[];
   title: string;
 }
+
+// Custom arrow components
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="gallery-next-arrow"
+      onClick={onClick}
+    >
+      <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
+        <ChevronRight className="h-6 w-6 text-purple-600" />
+      </div>
+    </div>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <div
+      className="gallery-prev-arrow"
+      onClick={onClick}
+    >
+      <div className="bg-white/80 hover:bg-purple-100 p-2 rounded-full shadow-md transition-colors">
+        <ChevronLeft className="h-6 w-6 text-purple-600" />
+      </div>
+    </div>
+  );
+};
 
 export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -23,6 +55,9 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
@@ -101,7 +136,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
             className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
             onClick={navigatePrevious}
           >
-            &lt;
+            <ChevronLeft className="h-6 w-6" />
           </button>
 
           <div className="max-w-[90vw] max-h-[80vh] relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
@@ -117,7 +152,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, title }) => 
             className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
             onClick={navigateNext}
           >
-            &gt;
+            <ChevronRight className="h-6 w-6" />
           </button>
         </div>
       )}
